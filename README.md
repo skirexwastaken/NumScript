@@ -3,14 +3,19 @@
 ## Overview
 
 > NumScript, short for NumericalScript, is a lightweight, esoteric, interpreted scripting language designed for rapid numeric programming and writing simple scripts.
-> Its syntax is built around two-digit numeric token pairs, each representing a command, operation, or keyword.
+
+> Its syntax is built around two-digit numeric token pairs, each representing a command, operation, or keyword
+
 > Current NumScript version is 1.4
 
 ## Key Features
 
 > Token-Based Syntax: All instructions are built using numeric token pairs (e.g., 13, 01)..
+
 > Zero-Error Policy: NumScript never crashes. Mistyped or incomplete code will default to safe (though potentially unintended) behavior.
+
 > Real-Time Execution: The interpreter processes code one line at a time with immediate feedback.
+
 > Simplicity: NumScript features a minimalistic syntax and a limited set of data types, resulting in a lightweight and fast programming experience.
 
 
@@ -54,7 +59,7 @@
 
 ## Code Examples
 
-> Example of defining a variable and for cycle.
+### Example of defining a variable and for cycle.
 
 13 01 01 24 01 10
 
@@ -64,7 +69,7 @@
 
 50 51
 
-> Console output:
+### Console output:
 
 10
 09
