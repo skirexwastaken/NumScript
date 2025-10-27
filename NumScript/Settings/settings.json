@@ -1,0 +1,14 @@
+{
+    "states":{
+        "debug":false,
+        "splitter":false,
+        "print_tokens":false,
+        "print_memory":false
+    },
+    
+    "symbols":{
+        "shell_in":"$ ",
+        "shell_out":"> ",
+        "input":"< "
+    }
+}
