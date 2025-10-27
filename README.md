@@ -68,6 +68,8 @@
 
 ### Example of defining a variable and for cycle.
 
+> NS Code:
+
 13 01 01 24 01 10
 
 54 01 01
