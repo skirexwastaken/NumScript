@@ -21,17 +21,24 @@
 
 ## Development Team
 
-> Head Developer: skirex - Developer of NumScript, NumScript+ and NumScript Server
+> Head Developer: skirex - Developer of NumScript and NumScript Server
+
 > Developer: benz.00 - Developer of NumScript and NumScript IDE
+
 > Developer: excel_master - Consultant and support developer
 
 ## Core Mechanics
 
 > NumScript is an interpreted language, meaning the interpreter reads and executes the code one line at a time.
+
 > The code is first processed by a tokenizer, which verifies that its content is numeric and splits it into token pairs, for example 10-01-00.
+
 > After tokenization, the tokens are analyzed by a parser to determine which function should be executed. This is defined by the first token pair.
+
 > The first token pair is then removed, and the remaining tokens are passed to the lexer, which analyzes their content.
+
 > The NumScript lexer outputs Lexer Blocks, which are groups of tokens representing final values. In code, these blocks are separated by the token 23.
+
 > A good example of blocks is a variable definition: 13 01 00 23 01 01 01 00
     -> This expression contains two blocks: the first defines the variable name, and the second defines its value. The value of the first block is 00, and the value of the second block is 01 10.
     These blocks are then used as parameters in the functions being executed. When debugging is enabled, you can view each of these blocks in detail.
@@ -49,13 +56,13 @@
 ## NumScript Console
 > NumScript has integrated console that can be used to execute code, it features multiple customizable settings:
 
-> 1. Debug -> Enables printing of outputs from normally silent functions such as jump, wait, and others.
+1. Debug -> Enables printing of outputs from normally silent functions such as jump, wait, and others.
 
-> 2. Splitter -> Splits token pairs in the console output (e.g., 0001 becomes 00 01).
+2. Splitter -> Splits token pairs in the console output (e.g., 0001 becomes 00 01).
 
-> 3. Print tokens -> Displays both the Tokenized Code and Higher Priority Tokenized Code after each function execution.
+3. Print tokens -> Displays both the Tokenized Code and Higher Priority Tokenized Code after each function execution.
 
-> 4. Print memory -> Shows variable and definition memory states after each function execution.
+4. Print memory -> Shows variable and definition memory states after each function execution.
 
 ## Code Examples
 
@@ -69,7 +76,7 @@
 
 50 51
 
-### Console output:
+> Console output:
 
 10
 09
