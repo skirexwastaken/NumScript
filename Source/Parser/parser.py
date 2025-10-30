@@ -8,14 +8,16 @@ import random
 # --- Runs NS functions ---
 def parser(self, tokens):
     
+    print(self.tokenized_code)
+
     # --- Checks if the code is to be added to definiton ---
-    if tokens[0]=="57":
-        if self.current_definition=="":
-            self.current_definition="00"
-            self.definitions[self.current_definition]=[]
+    if tokens[0] == "57":
+        if self.current_definition == "":
+            self.current_definition = "00"
+            self.definitions[self.current_definition] = []
             
         if self.current_definition not in self.definitions:
-            self.definitions[self.current_definition]=[]
+            self.definitions[self.current_definition] = []
             
         if len(tokens[1:]) > 0:
             self.definitions[self.current_definition].append(tokens[1:])
@@ -23,27 +25,27 @@ def parser(self, tokens):
         return("")
     
     else:
-        self.current_definition=""
+        self.current_definition = ""
     
     # --- TAB ---
-    if tokens[0]=="50":
+    if tokens[0] == "50":
         self.depth,index=0,0
         
         for token in tokens:
-            if token=="50":
+            if token == "50":
                 self.depth += 1
                 
             else:
                 break
             
-            index +=1
-        tokens=tokens[index:]
+            index += 1
+        tokens = tokens[index:]
         
-        if self.depth>self.maxdepth:
+        if self.depth > self.maxdepth:
             return("")
         
     else:
-        self.depth,self.maxdepth=0,0
+        self.depth, self.maxdepth = 0,0
     
     # --- Checks for functions ---
     match tokens[0]:
@@ -73,7 +75,7 @@ def parser(self, tokens):
         
         # --- Print in NumScript Ascii ---
         case"11":
-            return("".join([self.nsascii[chunk] for chunk in self.tokenize("".join(self.lexer(tokens)))]))
+            return("".join([self.nsascii[letter] for letter in self.tokenize("".join(self.lexer(tokens)))]))
         
         # --- Define variable ---
         case"13":
