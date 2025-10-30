@@ -1,4 +1,4 @@
-# NumScript: A questionable programming language
+# NumScript: A numerical programming language
 
 ## Overview
 
