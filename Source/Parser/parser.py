@@ -8,8 +8,6 @@ import random
 # --- Runs NS functions ---
 def parser(self, tokens):
     
-    print(self.tokenized_code)
-
     # --- Checks if the code is to be added to definiton ---
     if tokens[0] == "57":
         if self.current_definition == "":
@@ -90,7 +88,7 @@ def parser(self, tokens):
             # --- Variable is added to variables ---
             self.variables[var_name] = str(var_value)
 
-            return(f"-991323{var_name}23{var_value}")
+            return(f"-991324{var_name}24{var_value}")
         
         # --- Define pointer ---
         case"14":
@@ -104,11 +102,11 @@ def parser(self, tokens):
 
             for variable in builder:
                 if variable not in self.variables:
-                    self.variables[variable]="00"
+                    self.variables[variable] = "00"
 
                 self.pointers[pointer_name].append(variable)
 
-            return("-991423"+"".join(builder))
+            return("-991424"+"".join(builder))
         
         # --- Remove variable from pointer by name ---
         case"15":
@@ -122,12 +120,12 @@ def parser(self, tokens):
             
             if pointer_name not in self.pointers:
                 self.pointers[pointer_name]=[]
-                return(f"-991523{pointer_name}")
+                return(f"-991524{pointer_name}")
             
             if variable_name in self.pointers[pointer_name]:
                 del self.pointers[pointer_name][self.pointers[pointer_name].index(variable_name)]
                 
-            return(f"-991523{pointer_name}") 
+            return(f"-991524{pointer_name}") 
         
         # --- Remove variable from pointer by index ---
         case"16":
@@ -142,14 +140,14 @@ def parser(self, tokens):
 
             if pointer_name not in self.pointers:
                 self.pointers[pointer_name]=[]
-                return(f"-991623{pointer_name}")
+                return(f"-991624{pointer_name}")
 
             if not int(index) < len(self.pointers[pointer_name]):
                 index = -1
 
             del self.pointers[pointer_name][int(index)]
 
-            return(f"-991623{pointer_name}")
+            return(f"-991624{pointer_name}")
         
         # --- Append to pointer ---
         case"17":
@@ -168,7 +166,7 @@ def parser(self, tokens):
                 if variable not in self.pointers[name]:
                     self.pointers[name].append(variable)
 
-            return(f"-991723{name}")
+            return(f"-991724{name}")
         
         # --- Merge pointers ---
         case"18":
@@ -194,7 +192,7 @@ def parser(self, tokens):
 
             name = "".join(self.pointers[first_pointer])
 
-            return(f"-991823{name}")
+            return(f"-991824{name}")
         
         # --- Delete pointer --- 
         case"19":
@@ -203,7 +201,7 @@ def parser(self, tokens):
             if name in self.pointers:
                 del self.pointers[name]
 
-            return(f"-991923{name}")
+            return(f"-991924{name}")
         
         # --- Exit ---
         case"20":
@@ -229,7 +227,7 @@ def parser(self, tokens):
             self.definitions = {}
             self.pointers = {}
 
-            return("-21")
+            return("-9921")
         
         # --- Pass/Comment ---
         case"22":
@@ -272,7 +270,7 @@ def parser(self, tokens):
             else: 
                 self.higher_lindex = int(jump_value)-1
 
-            return(f"-994023{jump_value}")
+            return(f"-994024{jump_value}")
         
         # --- Wait ---
         case"41":
@@ -283,7 +281,7 @@ def parser(self, tokens):
 
             time.sleep(int(wait_value))
 
-            return(f"-994123{wait_value}") #Returns wait value
+            return(f"-994124{wait_value}") #Returns wait value
         
         # --- Clean console ---
         case"42":
@@ -547,7 +545,7 @@ def parser(self, tokens):
             
             self.definitions[self.current_definition] = []
             
-            return(f"-995623{self.current_definition}")
+            return(f"-995624{self.current_definition}")
         
         # --- Call definition ---
         case"58":
@@ -565,7 +563,7 @@ def parser(self, tokens):
                     self.higher_tokenized_code.insert(temp_higher_lindex+1,line)
                     temp_higher_lindex+=1
                     
-                return(f"-995823{definition_name}")
+                return(f"-995824{definition_name}")
             
         # --- Lambda ---    
         case"59":
@@ -581,7 +579,7 @@ def parser(self, tokens):
             
             self.definitions[definition_name] = [definition_code]
             
-            return(f"-99{definition_name}23{definition_code}")
+            return(f"-99{definition_name}24{definition_code}")
         
         # --- Load TXT ---
         case"60": 
@@ -679,7 +677,7 @@ def parser(self, tokens):
 
                 self.variables[variable]=data[variable]
                 
-            output="23".join(variable_names)
+            output="24".join(variable_names)
 
             return(f"-9963{output}")
         
@@ -706,7 +704,7 @@ def parser(self, tokens):
             output=""
 
             for i in name_var:
-                output+="23"+i
+                output+="24"+i
 
             return(f"-9964{output}")
         
@@ -734,7 +732,7 @@ def parser(self, tokens):
 
                 self.pointers[i]=data[i]
 
-            output = "23"+"23".join(name_pointers)
+            output = "24"+"24".join(name_pointers)
 
             return(f"-9965{output}")
         
@@ -758,9 +756,9 @@ def parser(self, tokens):
             with open("Data/Pointers/"+filename+".json","w") as file:
                 json.dump(save,file)
 
-            output = "23".join(name_pointers)
+            output = "24"+"24".join(name_pointers)
 
-            return(f"-996623{output}")
+            return(f"-996624{output}")
         
         # --- Import Definition --- 
         case"67":
@@ -787,7 +785,7 @@ def parser(self, tokens):
 
             output = "23".join(name_def)
 
-            return(f"-996723{output}")
+            return(f"-996724{output}")
         
         # --- Export Definition ---
         case"68":
@@ -811,7 +809,7 @@ def parser(self, tokens):
 
             output="23".join(name_def)
 
-            return(f"-996823{output}")
+            return(f"-996824{output}")
         
         # --- Load NS code from other file into higher tokenized code ---
         case"69":
@@ -834,7 +832,7 @@ def parser(self, tokens):
                     self.higher_tokenized_code.insert(temp_higher_lindex,i)
                     temp_higher_lindex += 1
                     
-            return(f"-996923{filename}")
+            return(f"-996924{filename}")
         
         # --- Poke variables name by index ---
         case"82":
@@ -845,13 +843,13 @@ def parser(self, tokens):
                 var_names = list(self.variables.keys())
 
                 if 0 <= int_index < len(var_names):
-                    return(f"8223{var_names[int_index]}")
+                    return(f"8224{var_names[int_index]}")
 
                 else:
-                    return("-822300")
+                    return("-822400")
 
             except:
-                return("-822300")
+                return("-822400")
             
         # --- Poke variables value by index ---     
         case"83":
@@ -862,13 +860,13 @@ def parser(self, tokens):
                 var_values = list(self.variables.values())
 
                 if 0 <= int_index < len(var_values):
-                    return(f"8323{var_values[int_index]}")
+                    return(f"8324{var_values[int_index]}")
                 
                 else:
-                    return("-832300")
+                    return("-832400")
                 
             except:
-                return("-832300")
+                return("-832400")
             
         # --- Insert to tokenized code ---    
         case"84":
@@ -941,7 +939,7 @@ def parser(self, tokens):
             del self.variables[var_name]
             self.variables[var_value] = var_name
 
-            return(f"-9988{var_value}23{var_name}")
+            return(f"-9988{var_value}24{var_name}")
         
         # --- Rename variable ---
         case"89":
@@ -960,7 +958,7 @@ def parser(self, tokens):
                 
             self.variables[new_name] = value
 
-            return(f"-9989{new_name}23{value}")
+            return(f"-9989{new_name}24{value}")
         
         # --- Contains ---
         case"90":
@@ -980,9 +978,9 @@ def parser(self, tokens):
             builder = self.tokenize(str_builder)
 
             if contains in builder:
-                self.variables[variable]="01";return("902301")
+                self.variables[variable]="01";return("902401")
             
-            else:self.variables[variable]="00";return("902300")
+            else:self.variables[variable]="00";return("902400")
             
         # --- Add token by index ---    
         case"91":
@@ -1009,7 +1007,7 @@ def parser(self, tokens):
             var_value = self.rounder(var_value)
             self.variables[var_name]=var_value
 
-            return(f"-9991{var_name}23{var_value}")
+            return(f"-9991{var_name}24{var_value}")
         
         # --- Remove token by index ---
         case"92":
@@ -1040,7 +1038,7 @@ def parser(self, tokens):
             var_value = self.rounder(var_value)
             self.variables[var_name] = var_value
 
-            return(f"-9992{var_name}23{var_value}")
+            return(f"-9992{var_name}24{var_value}")
         
         # --- Replace ---
         case"93":
@@ -1058,7 +1056,7 @@ def parser(self, tokens):
             builder = str_builder.replace(original_token,new_token)
             self.variables[var_name] = builder
 
-            return(f"-999323{builder}")
+            return(f"-999324{builder}")
         
         # --- Replace by index ---
         case"94":
@@ -1078,10 +1076,10 @@ def parser(self, tokens):
             if not(0 <= int(idx) < len(var_value)):
                 idx = -1
 
-            var_value[int(idx)]=token
+            var_value[int(idx)] = token
             self.variables[var] = "".join(var_value)
 
-            return(f"-999423{self.variables[var]}")
+            return(f"-999424{self.variables[var]}")
         
         # --- Random randint ---
         case"95":
@@ -1094,7 +1092,7 @@ def parser(self, tokens):
             max = "".join(builder[2:])
             self.variables[var] = self.rounder(str(random.randint(int(min),int(max))))
 
-            return(f"-999523{self.variables[var]}")
+            return(f"-999524{self.variables[var]}")
         
         # --- Sub string (extracts part of string by start and end) ---
         case"96":
@@ -1122,7 +1120,7 @@ def parser(self, tokens):
             var_value = "".join(var_value)
             self.variables[var_name] = var_value
             
-            return(f"-999623{var_value}")
+            return(f"-999624{var_value}")
         
         # --- &= -> if variable value is same as inputed value, the variable is set to 01, else 00 ---
         case"97":
@@ -1144,7 +1142,7 @@ def parser(self, tokens):
             else:
                 self.variables[var_name] = "00"
 
-            return(f"-999723{self.variables[var_name]}")
+            return(f"-999724{self.variables[var_name]}")
         
         # --- |= -> if variable value is not same as inputed value, the variable is set to 00, else 01 ---
         case"98":
@@ -1165,7 +1163,7 @@ def parser(self, tokens):
             else:
                 self.variables[var_name] = "00"
 
-            return(f"-999823{self.variables[var_name]}")
+            return(f"-999824{self.variables[var_name]}")
         
         # --- Project guide ---  
         case"99":

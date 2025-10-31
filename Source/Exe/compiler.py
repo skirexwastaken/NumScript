@@ -17,13 +17,13 @@ def compiler(self, parsed_tokenized_code):
             if not skip:
                 match token:
             
-                    case"01"|"02"|"03"|"04"|"05"|"08"|"09":
+                    case "01"|"02"|"03"|"04"|"05"|"08"|"09":
                         skip=True
                 
-                    case"06"|"07":
+                    case "06"|"07":
                         return(parsed_tokenized_code)
                 
-                    case"25":
+                    case "25":
                         parsed_tokenized_code[tokenized_code_index]=tokenized_line[:tokenized_line_index]
                         parsed_tokenized_code.insert(tokenized_code_index+1,tokenized_line[tokenized_line_index+1:])
                         tokenized_line=tokenized_line[:tokenized_line_index]

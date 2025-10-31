@@ -1,7 +1,7 @@
 # --- Calls a pointer where its name is a number ---        
 def pointer_by_number_check(self):
     if self.pointer_by_number not in self.pointers:
-        return ""
+        return 
 
     self.variables = self.pointers[self.pointer_by_number]
 

@@ -32,7 +32,7 @@ def cli(self):
         if line !="":
             tokenized_line=(self.tokenizer(line))
 
-        if tokenized_line==["00"] or line=="":
+        if tokenized_line == ["00"] or line=="":
             self.run()
 
         elif tokenized_line != "-99":

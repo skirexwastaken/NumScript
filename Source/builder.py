@@ -32,19 +32,19 @@ class NumScript():
 
         self.loop_callback = False#Helper variable for loops
         
-        #--- Settings of Interpreter ---
-        with open("Settings/settings.json","r") as file:
-            settings = json.load(file)
+        # --- Settings of Interpreter ---
+        with open("Source/JSON/settings.json","r") as settings_file:
+            settings = json.load(settings_file)
             
             self.states = settings["states"]
         
             self.shell_in_symbol = settings["symbols"]["shell_in"]
             self.shell_out_symbol = settings["symbols"]["shell_out"]
             self.input_symbol = settings["symbols"]["input"]
-            
+
         # --- Importing modules ---
-        with open("Source/module_paths.json","r") as file:
-            modules_to_import = json.load(file)
+        with open("Source/JSON/module_paths.json","r") as module_paths_file:
+            modules_to_import = json.load(module_paths_file)
 
             for module_path, function_name in modules_to_import.items():
                 module = __import__(f"Source.{module_path}", fromlist=[function_name])
