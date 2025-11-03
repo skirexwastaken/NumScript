@@ -30,9 +30,13 @@ def cli(self):
         line = input(self.shell_in_symbol).replace(" ","")#Input into tokenized code
 
         if line !="":
-            tokenized_line=(self.tokenizer(line))
+            tokenized_line = (self.tokenizer(line))
 
         if tokenized_line == ["00"] or line=="":
+            self.run()
+
+        elif tokenized_line[-2] == "25" and tokenized_line[-1] == "00":
+            self.tokenized_code.append(tokenized_line[:-2])
             self.run()
 
         elif tokenized_line != "-99":
