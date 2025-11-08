@@ -50,15 +50,15 @@ These blocks are then passed back to the parser and they are used as parameters 
 The parser assigns the blocks as parameters for the target function, and the result is printed to the console.
 
 ### Summary
-Tokenizer → Validates and splits code into numeric token pairs.
+Tokenizer -> Splits code into numeric token pairs.
 
-Executor → Reads and sends each line for execution.
+Executor -> Reads and sends each line for execution.
 
-Parser → Determines which function each token pair represents and sets its arguments.
+Parser -> Determines which function each token pair represents and sets its arguments.
 
-Lexer → Groups tokens into logical blocks and evaluates their values.
+Lexer -> Groups tokens into logical blocks and evaluates their values.
 
-Console Output → Displays the final result after execution.
+Console Output -> Displays the final result after execution.
 
 ## Token MAP
 
