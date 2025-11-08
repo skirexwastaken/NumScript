@@ -2,44 +2,71 @@
 
 NumScript is a **lightweight, esoteric, interpreted scripting language** designed for **numerical programming** and writing simple scripts.
 
-The language started as a joke back in **mid-2024**, and over time it grew into its current form featuring a **rich syntax** and **unique numerical logic system**.
+The language started as a joke back in **mid-2024**, and over time it grew into its current form featuring a **rich syntax** and a **unique numerical logic system**.
 
 👉 You can try the language and read the full guide at [**numscript.xyz**](https://numscript.xyz)
 
 ## Key Features
 
-NumScript offers a set of unique design principles and behaviors that make it both **minimalistic** and **unexpectedly powerful**:
+NumScript includes several defining features that shape its unique programming model:
 
-- **Token-Based Syntax:** All instructions are built using numeric token pairs (e.g., `13 01`).
-- **Zero-Error Policy:** NumScript never crashes. Mistyped or incomplete code defaults to safe (though potentially unintended) behavior.
-- **Real-Time Execution:** The interpreter processes code one line at a time with immediate feedback.
-- **Simplicity:** NumScript features a minimalistic syntax and a limited set of data types, resulting in a lightweight and fast programming experience.
-
----
+- **Token-Based Syntax:** All instructions are built using numeric token pairs (for example, `13 01`).
+- **Zero-Error Policy:** NumScript never crashes. Mistyped or incomplete code automatically defaults to safe (though possibly unintended) behavior.
+- **Real-Time Execution:** The interpreter processes code one line at a time, providing immediate feedback.
+- **Simplicity:** NumScript features a minimalistic syntax and a limited set of data types, resulting in a lightweight and efficient programming experience.
 
 ## Core Mechanics
 
 NumScript is an **interpreted language**, meaning the interpreter reads and executes code **one line at a time**.
 
-The internal process follows a clear sequence of steps:
+The internal execution process is composed of several steps:
 
-1. **Tokenization**  
-   The code is first processed by a tokenizer, which verifies that its content is numeric and splits it into token pairs (e.g., `10 01 00`).
+### 1. Tokenization
+The code is first processed by a **tokenizer**, which checks that its content is numeric and splits it into **token pairs** — for example:
 
-2. **Execution Flow**  
-   After the instruction `00` (**RUN**) is passed, the code is compiled into a simpler internal format and passed to the **executor**.  
-   The executor reads each line and forwards it to the **code runner**, which sends it to the **parser**.
+### 2. Execution Setup
+After the instruction 00 (RUN) is passed, the code is compiled into a simplified internal format and sent to the executor.
+The executor reads each line in order and passes it to the code runner.
 
-3. **Parsing and Lexing**  
-   The **parser** analyzes the tokens to determine which function should be executed — this is defined by the first token pair.  
-   That first token pair is removed, and the remaining tokens are sent to the **lexer**, which analyzes their content.
+### 3. Parsing
+The code runner sends the current line to the parser.
+The parser analyzes the tokens to determine which function should be executed — this is defined by the first token pair.
+That first pair is then removed, and the remaining tokens are passed to the lexer for further analysis.
 
-   The **lexer** produces **Lexer Blocks** — groups of tokens representing final values.  
-   In code, these blocks are separated by the token `24`.
+### 4. Lexing
+The lexer processes the remaining tokens and groups them into Lexer Blocks, which represent final, usable values.
+In NumScript, these blocks are separated by the token 24.
 
-   **Example — Variable Definition:**  
-   ```text
-   13 01 00 24 01 01 01 00
+Example — Variable Definition: 13 01 00 24 01 01 01 00
+
+This expression contains two blocks:
+The first block defines the variable name, with the value 00.
+The second block defines the value of that variable, with the value 01 10.
+
+These blocks are then used as parameters in the executed function.
+When debugging is enabled, each block can be inspected individually.
+
+### 5. Execution Result
+After the lexer finishes analyzing all tokens, the resulting Lexer Blocks are returned to the parser.
+The parser assigns the blocks as parameters for the target function, and the result is printed to the console.
+
+### Summary
+Tokenizer → Validates and splits code into numeric token pairs.
+
+Executor → Reads and sends each line for execution.
+
+Parser → Determines which function each token pair represents and sets its arguments.
+
+Lexer → Groups tokens into logical blocks and evaluates their values.
+
+Console Output → Displays the final result after execution.
+
+
+
+
+
+
+
 
 
 ## Token MAP
