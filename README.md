@@ -45,13 +45,13 @@
 | Name | Token | Description | Example |
 |------|--------|-------------|----------|
 | Run | 00 | Another way of running code inserted to console. | 00 |
-| Number | 01 | Pointer towards a number. | 01 00 → 00 is a number |
-| Variable (num) | 02 | Pointer towards variable by name. | 02 00 → Variable named 00 |
-| Variable (var) | 03 | Points to variable by value of variable. | 03 00 → Variable named as value of variable 00 |
-| Index (num) | 04 | Replaces lexer block by numeric index. | 01 00 01 01 04 00 → 00 |
-| Index (var) | 05 | Replaces lexer block by variable value index. | 01 00 01 01 05 00 → token at variable 00's value |
-| Rest is num | 06 | Considers rest of line to be a number. | 06 00 01 → 00 01 is taken as a number |
-| Rest is var | 07 | Considers rest of line to be a variable. | 07 00 01 → 00 01 is taken as a variable |
+| Number | 01 | Pointer towards a number. | 01 00 |
+| Variable (num) | 02 | Pointer towards variable by name. | 02 00|
+| Variable (var) | 03 | Points to variable by value of variable. | 03 00|
+| Index (num) | 04 | Replaces lexer block by numeric index. | 01 00 01 01 04 00 |
+| Index (var) | 05 | Replaces lexer block by variable value index. | 01 00 01 01 05 00 |
+| Rest is num | 06 | Considers rest of line to be a number. | 06 00 01 |
+| Rest is var | 07 | Considers rest of line to be a variable. | 07 00 01 |
 | Pointer (num) | 08 | Calls all variables from a pointer where its name is a number. | 08 00 |
 | Pointer (var) | 09 | Calls all variables from a pointer where its name is a variable value. | 09 00 |
 | Print | 10 | Prints all lexer blocks. | 10 01 00 |
