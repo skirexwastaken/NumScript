@@ -22,7 +22,7 @@ NumScript is an **interpreted language**, meaning the interpreter reads and exec
 The internal execution process is composed of several steps:
 
 ### 1. Tokenization
-The code is first processed by a **tokenizer**, which checks that its content is numeric and splits it into **token pairs** — for example:
+The code is first processed by a **tokenizer**, which checks that its content is numeric and splits it into **token pairs** — for example: "10", "01", "00"
 
 ### 2. Execution Setup
 After the instruction 00 (RUN) is passed, the code is compiled into a simplified internal format and sent to the executor.
@@ -40,14 +40,13 @@ In NumScript, these blocks are separated by the token 24.
 Example — Variable Definition: 13 01 00 24 01 01 01 00
 
 This expression contains two blocks:
+
 The first block defines the variable name, with the value 00.
 The second block defines the value of that variable, with the value 01 10.
 
-These blocks are then used as parameters in the executed function.
-When debugging is enabled, each block can be inspected individually.
+These blocks are then passed back to the parser and they are used as parameters in the executed function.
 
 ### 5. Execution Result
-After the lexer finishes analyzing all tokens, the resulting Lexer Blocks are returned to the parser.
 The parser assigns the blocks as parameters for the target function, and the result is printed to the console.
 
 ### Summary
@@ -60,14 +59,6 @@ Parser → Determines which function each token pair represents and sets its arg
 Lexer → Groups tokens into logical blocks and evaluates their values.
 
 Console Output → Displays the final result after execution.
-
-
-
-
-
-
-
-
 
 ## Token MAP
 
