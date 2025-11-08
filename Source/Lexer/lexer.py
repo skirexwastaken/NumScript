@@ -10,6 +10,11 @@ def lexer(self,tokens):
     skip = False
     index = 0
     tokens = tokens[1:]
+    
+    # --- The idea here is that a buffer is added at the start so in case there's for example 01 at the end of the line the lexer won't crash ---
+    tokensLength = len(tokens)
+    tokens.append("00")
+    
     deleted = 0
     
     self.output_value = ""
@@ -25,8 +30,8 @@ def lexer(self,tokens):
     self.pointer_by_variable = ""
 
     # --- Building print value ---
-    while index != len(tokens):
-
+    for token in range(tokensLength):
+        
         # --- Skip is used to distinguish between pair and non pair tokens ---
         if not skip:
 
@@ -37,18 +42,12 @@ def lexer(self,tokens):
                 case"01":
                     self.lexer_utility(None)
 
-                    if not(0 <= index+1 < len(tokens)):
-                        tokens.append("00")
-
                     self.output_value+=tokens[index+1]
                     skip=True
 
                 # --- Checking for variable ---    
                 case"02":
                     self.lexer_utility("clean_variable_by_number")
-
-                    if not(0 <= index+1 < len(tokens)):
-                        tokens.append("00")
                     
                     self.variable_by_number+=tokens[index+1]
                     skip=True
@@ -56,9 +55,6 @@ def lexer(self,tokens):
                 # --- Checking for variable with name being variable value ---
                 case"03":
                     self.lexer_utility("clean_variable_by_variable")
-
-                    if not(0 <= index+1 < len(tokens)):
-                        tokens.append("00")
 
                     self.variable_by_variable+=tokens[index+1]
                     skip=True
@@ -68,18 +64,12 @@ def lexer(self,tokens):
                 case"04":
                     self.lexer_utility("clean_index_by_number")
 
-                    if not(0 <= index+1 < len(tokens)):
-                        tokens.append("00")
-
                     self.index_by_number+=tokens[index+1]
                     skip=True
 
                 # --- Grabs item by var index from the existing code ---    
                 case"05":
                     self.lexer_utility("clean_index_by_variable")
-
-                    if not(0 <= index+1 < len(tokens)):
-                        tokens.append("00")
 
                     self.index_by_variable+=tokens[index+1]
                     skip=True
@@ -104,18 +94,12 @@ def lexer(self,tokens):
                 case"08":
                     self.lexer_utility("clean_pointer_by_number")
 
-                    if not(0 <= index+1 < len(tokens)):
-                        tokens.append("00")
-
                     self.pointer_by_number+=tokens[index+1]
                     skip=True
 
                 # --- Call pointer with var value ---
                 case"09":
                     self.lexer_utility("cleen_pointer_by_variable")
-
-                    if not(0 <= index+1 < len(tokens)):
-                        tokens.append("00")
 
                     self.pointer_by_variable+=tokens[index+1]
                     skip=True

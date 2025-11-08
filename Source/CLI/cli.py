@@ -24,20 +24,18 @@ def cli(self):
         self.run()
 
     # --- Console Interface ---        
-    tokenized_line = ""
-
-    while True:#Console loop
-        line = input(self.shell_in_symbol).replace(" ","")#Input into tokenized code
+    while True:
+        line = input(self.shell_in_symbol).replace(" ","")
 
         if line !="":
-            tokenized_line = (self.tokenizer(line))
+            tokenized_line = self.tokenizer(line)
 
-        if tokenized_line == ["00"] or line=="":
-            self.run()
+            if tokenized_line == ["00"]:
+                self.run()
 
-        elif tokenized_line[-2] == "25" and tokenized_line[-1] == "00":
-            self.tokenized_code.append(tokenized_line[:-2])
-            self.run()
+            elif tokenized_line[-2] == "25" and tokenized_line[-1] == "00":
+                self.tokenized_code.append(tokenized_line[:-2])
+                self.run()
 
-        elif tokenized_line != "-99":
-            self.tokenized_code.append(tokenized_line)
+            elif tokenized_line != "-99":
+                self.tokenized_code.append(tokenized_line)

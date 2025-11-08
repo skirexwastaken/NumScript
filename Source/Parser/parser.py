@@ -20,7 +20,7 @@ def parser(self, tokens):
         if len(tokens[1:]) > 0:
             self.definitions[self.current_definition].append(tokens[1:])
         
-        return("")
+        return("-572400")
     
     else:
         self.current_definition = ""
@@ -40,7 +40,7 @@ def parser(self, tokens):
         tokens = tokens[index:]
         
         if self.depth > self.maxdepth:
-            return("")
+            return("-502400")
         
     else:
         self.depth, self.maxdepth = 0,0

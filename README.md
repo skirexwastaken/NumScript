@@ -6,8 +6,6 @@
 
 > Its syntax is built around two-digit numeric token pairs, each representing a command, operation, or keyword
 
-> Current NumScript version is 1.4
-
 ## Key Features
 
 > Token-Based Syntax: All instructions are built using numeric token pairs (e.g., 13, 01)..
