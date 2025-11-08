@@ -1,7 +1,7 @@
 # NumScript: A numerical programming language
 
 > NumScript is a lightweight, esoteric, interpreted scripting language designed for numerical programming and writing simple scripts.
-> 
+
 > The language started as a joke back in middle of the 2024 and over time it grew into its current form featuring rich syntax.
 
 ## Key Features
