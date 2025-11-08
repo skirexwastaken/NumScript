@@ -8,39 +8,39 @@ The language started as a joke back in **mid-2024**, and over time it grew into 
 
 ## Key Features
 
-> Token-Based Syntax: All instructions are built using numeric token pairs (e.g., 13, 01)..
+NumScript offers a set of unique design principles and behaviors that make it both **minimalistic** and **unexpectedly powerful**:
 
-> Zero-Error Policy: NumScript never crashes. Mistyped or incomplete code will default to safe (though potentially unintended) behavior.
+- **Token-Based Syntax:** All instructions are built using numeric token pairs (e.g., `13 01`).
+- **Zero-Error Policy:** NumScript never crashes. Mistyped or incomplete code defaults to safe (though potentially unintended) behavior.
+- **Real-Time Execution:** The interpreter processes code one line at a time with immediate feedback.
+- **Simplicity:** NumScript features a minimalistic syntax and a limited set of data types, resulting in a lightweight and fast programming experience.
 
-> Real-Time Execution: The interpreter processes code one line at a time with immediate feedback.
-
-> Simplicity: NumScript features a minimalistic syntax and a limited set of data types, resulting in a lightweight and fast programming experience.
+---
 
 ## Core Mechanics
 
-> NumScript is an interpreted language, meaning the interpreter reads and executes the code one line at a time.
+NumScript is an **interpreted language**, meaning the interpreter reads and executes code **one line at a time**.
 
-> The code is first processed by a tokenizer, which verifies that its content is numeric and splits it into token pairs, for example 10-01-00.
+The internal process follows a clear sequence of steps:
 
-> After the instruction 00 (RUN) is passed, the code is firstly compiled to simplier format and is passed to the executor.
+1. **Tokenization**  
+   The code is first processed by a tokenizer, which verifies that its content is numeric and splits it into token pairs (e.g., `10 01 00`).
 
-> Executor reads one line at a time and passes it to the code runner.
+2. **Execution Flow**  
+   After the instruction `00` (**RUN**) is passed, the code is compiled into a simpler internal format and passed to the **executor**.  
+   The executor reads each line and forwards it to the **code runner**, which sends it to the **parser**.
 
-> Code runner passes the line into the parser.
+3. **Parsing and Lexing**  
+   The **parser** analyzes the tokens to determine which function should be executed — this is defined by the first token pair.  
+   That first token pair is removed, and the remaining tokens are sent to the **lexer**, which analyzes their content.
 
-> Parser analyzes the tokens to determine which function should be executed. This is defined by the first token pair.
+   The **lexer** produces **Lexer Blocks** — groups of tokens representing final values.  
+   In code, these blocks are separated by the token `24`.
 
-> The first token pair is then removed, and the remaining tokens are passed to the lexer, which analyzes their content.
+   **Example — Variable Definition:**  
+   ```text
+   13 01 00 24 01 01 01 00
 
-> The lexer outputs Lexer Blocks, which are groups of tokens representing final values. In code, these blocks are separated by the token 24.
-
-> A good example of blocks is a variable definition: 13 01 00 24 01 01 01 00
-    -> This expression contains two blocks: the first defines the variable name, and the second defines its value. The value of the first block is 00, and the value of the second block is 01 10.
-    -> These blocks are then used as parameters in the functions being executed. When debugging is enabled, you can view each of these blocks in detail.
-
-> After Lexer finishes analyzing all of the tokens, the rusulting Lexer Blocks are returned to Parser.
-
-> Parser then sets the individual blocks as the parameters of the function that is being executed and the result is printed to console.
 
 ## Token MAP
 
