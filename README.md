@@ -194,7 +194,7 @@ Console Output → Displays the final result after execution.
 
 ### Example of defining a variable and for cycle.
 
-NumScript code split by new lines:
+NumScript code split by new lines
 
 ```
 13 01 01 24 01 10
@@ -203,13 +203,13 @@ NumScript code split by new lines:
 50 51
 ```
 
-NumScript code split by 25 operator:
+NumScript code split by 25 operator
 
 ```
 13 01 01 24 01 10 25 54 01 01 25 50 10 02 01 25 50 51
 ```
 
-Console output:
+Console output
 
 ```
 10
