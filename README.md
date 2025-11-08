@@ -72,8 +72,8 @@
 | Then | 25 | Allows multiple lines on one line. | 10 01 00 25 10 01 01 |
 | Date | 26 | Inserts current date as number. | 10 26 |
 | Time | 27 | Inserts current time as number. | 10 27 |
-| Read down | 28 | Interpreter reads top to bottom. | 28 |
-| Read up | 29 | Interpreter reads bottom to top. | 29 |
+| Read down | 28 | Interpreter reads from top to bottom. | 28 |
+| Read up | 29 | Interpreter reads from bottom to top. | 29 |
 | + | 30 | Plus operator. | 10 01 01 30 01 01 |
 | - | 31 | Minus operator. | 10 01 01 31 01 01 |
 | * | 32 | Times operator. | 10 01 01 32 01 01 |
