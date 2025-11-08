@@ -4,6 +4,8 @@
 
 > The language started as a joke back in middle of the 2024 and over time it grew into its current form featuring rich syntax.
 
+> You can try the language and see a bigger guide at numscript.xyz
+
 ## Key Features
 
 > Token-Based Syntax: All instructions are built using numeric token pairs (e.g., 13, 01)..
