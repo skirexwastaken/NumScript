@@ -32,10 +32,10 @@ def cli(self):
 
             if tokenized_line == ["00"]:
                 self.run()
-
-            elif tokenized_line[-2] == "25" and tokenized_line[-1] == "00":
-                self.tokenized_code.append(tokenized_line[:-2])
-                self.run()
+            elif len(tokenized_line) > 2:
+                if tokenized_line[-2] == "25" and tokenized_line[-1] == "00":
+                    self.tokenized_code.append(tokenized_line[:-2])
+                    self.run()
 
             elif tokenized_line != "-99":
                 self.tokenized_code.append(tokenized_line)
