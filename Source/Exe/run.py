@@ -1,32 +1,52 @@
 # --- Runs code in tokenized and higer tokenized variables --- 
 def run(self):
-    # --- Removing THEN from both tokenized codes ---
+    # --- Removing THEN from tokenized code ---
     self.tokenized_code = self.compiler(self.tokenized_code)
     
-    # --- Running code --- 
-    while self.lindex < len(self.tokenized_code):#Tokenized code has lower priority than higher tokenized code, so if new tokens are added to higher tokenized code durring the procces of running tokenized code, exe() will switch to executing higher tokenized code
-        self.line_runner(self.tokenized_code,self.lindex)#Runs tokenized code
-        if self.lindex+self.index_change >= 0:#If index + index change is not negative
-            self.lindex+=self.index_change#index change is added to index
+    """
+    The idea here is that tokenized code has lower priority than higher tokenized code.
+    The reason behind this is that for example called function needs to be executed instantly so its added to higher tokenized cody which has higher priority.
+    """
 
+    # --- Running tokenized code --- 
+    while self.lindex < len(self.tokenized_code):
+        
+        # --- Line is passed to line_runner ---
+        self.line_runner(self.tokenized_code,self.lindex)
+        
+        # --- If index change is valid ---
+        if self.lindex+self.index_change >= 0:
+            self.lindex+=self.index_change
+
+        # --- If the index change would lead to selecting line before 0 or after end of file, the execution of tokenized code is stopped ---
         else:
-            self.lindex=len(self.tokenized_code)#If index + index_change would be negative, the exe process is stopped
+            self.lindex=len(self.tokenized_code)
 
-        if self.higher_tokenized_code != []:#Checks if higher code isn't empty
+        # --- Checking if higher tokenized code is not empty ---
+        if self.higher_tokenized_code != []:
+
+            # --- Removing THEN from higher tokenized code ---
             self.higher_tokenized_code = self.compiler(self.higher_tokenized_code)
 
-            while self.higher_lindex != len(self.higher_tokenized_code):#Running higer tokenized code
-                self.line_runner(self.higher_tokenized_code,self.higher_lindex)#Runs higher tokenized code
+            # --- Running higher tokenized code ---
+            while self.higher_lindex != len(self.higher_tokenized_code):
 
-                if self.higher_lindex+self.index_change >= 0:#If index + index change is not negative
-                    self.higher_lindex+=self.index_change#index change is added to index
+                # --- Line is passed to line runner ---
+                self.line_runner(self.higher_tokenized_code,self.higher_lindex)
 
+                # --- If index change is valid ---
+                if self.higher_lindex+self.index_change >= 0:
+                    self.higher_lindex+=self.index_change
+
+                # --- If the index change would lead to selecting line before 0 or after end of file, the execution of higher tokenized code is stopped ---
                 else:
-                    self.higher_lindex=len(self.higher_tokenized_code)#If index + index_change would be negative, the exe process is stopped
+                    self.higher_lindex=len(self.higher_tokenized_code)
 
-            self.higher_tokenized_code,self.higher_lindex=[],0#Higher tokenized code and higher lindex are set to their default values
+            # --- After all of higher tokenized code is executed the variables tied to running it are set to their default values ---
+            self.higher_tokenized_code = []
+            self.higher_lindex = 0
             
-    # --- Setting state variables to their default values ---        
+    # --- Setting variables tied to code running to their default values ---        
     self.tokenized_code = []
     self.lindex = 0
     self.maxdepth = 0
