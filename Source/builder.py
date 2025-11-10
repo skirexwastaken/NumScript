@@ -1,9 +1,10 @@
 # --- Importing Libraries ---
 import json
 import types
+import os
 
-# --- NumScript Language ---
-class NumScript():
+# --- NumScript Virtual Machine ---
+class NumScriptVirtualMachine():
     
     # --- Setup of "Global Variables" ---
     def __init__(self):
@@ -31,6 +32,11 @@ class NumScript():
         self.current_definition = ""#Current definiton that is being defined
 
         self.loop_callback = False#Helper variable for loops
+        
+        # --- Checking if Data folders exist ---
+        for folder in ["Code","Definitions","Files","Pointers","Variables"]:
+            if not os.path.exists(f"Data/{folder}"):
+                os.makedirs(f"Data/{folder}")
         
         # --- Settings of Interpreter ---
         with open("Source/JSON/settings.json","r") as settings_file:
