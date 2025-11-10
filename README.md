@@ -60,6 +60,12 @@ Lexer -> Groups tokens into logical blocks and evaluates their values.
 
 Console Output -> Displays the final result after execution.
 
+## Runtime Architecture
+
+cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
+                  |                                           |
+                  ---------------------------------------------  
+                  
 ## Token MAP
 
 | Name | Token | Description | Example |
