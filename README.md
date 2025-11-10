@@ -19,6 +19,8 @@ NumScript includes several defining features that shape its unique programming m
 
 You will need to install the newest version of python.
 
+Running NumScript shell:
+
 Windows
 
 `python NumScript.py`
@@ -27,7 +29,7 @@ Linux
 
 `python3 NumScript.py`
 
-Or if you want to run a specific file
+Running NumScript file:
 
 Windows 
 
