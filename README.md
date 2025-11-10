@@ -15,6 +15,28 @@ NumScript includes several defining features that shape its unique programming m
 - **Real-Time Execution:** The interpreter processes code one line at a time, providing immediate feedback.
 - **Simplicity:** NumScript features a minimalistic syntax and a limited set of data types, resulting in a lightweight and efficient programming experience.
 
+## How to use
+
+You will need to install the newest version of python.
+
+Windows
+
+`python NumScript.py`
+
+Linux 
+
+`python3 NumScript.py`
+
+Or if you want to run a specific file
+
+Windows 
+
+`python NumScript.py main.ns`
+
+Linux
+
+`python3 NumScript.py main.ns`
+
 ## Core Mechanics
 
 NumScript is an **interpreted language**, meaning the interpreter reads and executes code **one line at a time**.
