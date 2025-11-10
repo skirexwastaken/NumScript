@@ -6,5 +6,5 @@ if __name__ == "__main__":
     from Source.builder import NumScriptVirtualMachine
 
     # --- Launching the NumScript shell ---                
-    shell = NumScriptVirtualMachine()
-    shell.cli()
+    engine = NumScriptVirtualMachine()
+    engine.cli()
