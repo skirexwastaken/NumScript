@@ -62,9 +62,11 @@ Console Output -> Displays the final result after execution.
 
 ## Runtime Architecture
 
+```
 cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
                   |                                           |
                   ---------------------------------------------  
+```
                   
 ## Token MAP
 
