@@ -15,6 +15,15 @@ NumScript includes several defining features that shape its unique programming m
 - **Real-Time Execution:** The interpreter processes code one line at a time, providing immediate feedback.
 - **Simplicity:** NumScript features a minimalistic syntax and a limited set of data types, resulting in a lightweight and efficient programming experience.
 
+## Requirements
+
+NumScript doesn't use any non standard Python libraries so you will need to simply download Python.
+
+| Works | Python Version |
+|-------|----------------|
+| ✅ | 3.14.0 |
+|-------|----------------|
+
 ## How to use
 
 Running NumScript shell:
