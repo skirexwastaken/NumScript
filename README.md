@@ -17,7 +17,7 @@ NumScript includes several defining features that shape its unique programming m
 
 ## Requirements
 
-NumScript doesn't use any non standard Python libraries so you will need to simply download Python.
+NumScript doesn't use any non standard Python libraries so you will need to simply install Python.
 
 | Works | Python Version |
 |-------|----------------|
