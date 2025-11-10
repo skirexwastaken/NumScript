@@ -21,7 +21,7 @@ NumScript doesn't use any non standard Python libraries so you will need to simp
 
 | Works | Python Version |
 |-------|----------------|
-| ✅ | 3.14.0 |
+|  ✅  |  3.14.0  |
 
 ## How to use
 
