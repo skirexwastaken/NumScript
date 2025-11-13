@@ -79,16 +79,16 @@ def lexer(self,tokens):
                     self.lexer_utility(None)
 
                     tokens=tokens[index+1:]
-                    self.output_value+="".join(tokens)
-                    index=len(tokens)-1
+                    self.output_value+="".join(tokens[:-1])
+                    break
 
                 # --- Rest is var ---
                 case"07":
                     self.lexer_utility(None)
 
                     tokens=tokens[index+1:]
-                    self.variable_by_number+="".join(tokens)
-                    index=len(tokens)-1
+                    self.variable_by_number+="".join(tokens[:-1])
+                    break
 
                 # --- Call pointer with num value ---    
                 case"08":
