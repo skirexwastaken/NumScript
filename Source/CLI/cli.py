@@ -1,5 +1,6 @@
 # --- Importing Libraries ---
 import sys
+import os
 
 # --- NumScript cli that can run from file or from CLI input ---        
 def cli(self):
@@ -11,17 +12,22 @@ def cli(self):
     if len(sys.argv) > 1: #File input from system arguments
         NSfile = sys.argv[1].replace("\\","/")#Replaces \\ with / for "open" to work
 
-        with open(NSfile, 'r', encoding='utf-8') as NSCode:
+        if os.path.exists(NSfile) and NSfile.endswith(".ns"):
+            with open(NSfile, 'r', encoding='utf-8') as NSCode:
 
-            for line in NSCode:
-                line = line.replace(" ", "").rstrip()
+                for line in NSCode:
+                    line = line.replace(" ", "").rstrip()
 
-                if line and line != "\n": # check for empty lines
-                    tokenized_line = self.tokenizer(line)
+                    if line and line != "\n": # check for empty lines
+                        tokenized_line = self.tokenizer(line)
 
-                    if tokenized_line != "-99":
-                        self.tokenized_code.append(tokenized_line)
-        self.run()
+                        if tokenized_line != "-99":
+                            self.tokenized_code.append(tokenized_line)
+            self.run()
+            exit()
+
+        else:
+            exit()
 
     # --- Console Interface ---        
     while True:
