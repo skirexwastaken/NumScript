@@ -4,7 +4,7 @@ NumScript is a **lightweight, esoteric, interpreted scripting language** designe
 
 The language started as a joke back in **mid-2024**, and over time it grew into its current form featuring a **rich syntax** and a **unique numerical logic system**.
 
-👉 You can try the language and read the full guide at [**numscript.xyz**](https://numscript.xyz)
+👉 You can try the language at [**numscript.xyz**](https://numscript.xyz)
 
 ## Key Features
 
