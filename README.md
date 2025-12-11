@@ -111,8 +111,8 @@ cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
 | Index (var) | 05 | Replaces lexer block by variable value index. | 01 00 01 01 05 00 |
 | Rest is num | 06 | Considers rest of line to be a number. | 06 00 01 |
 | Rest is var | 07 | Considers rest of line to be a variable. | 07 00 01 |
-| Pointer (num) | 08 | Calls all variables from a pointer where its name is a number. | 08 00 |
-| Pointer (var) | 09 | Calls all variables from a pointer where its name is a variable value. | 09 00 |
+| Pointer (num) | 08 | Calls the last variable from a pointer where its name is a number. | 08 00 |
+| Pointer (var) | 09 | Calls the last variable from a pointer where its name is a variable value. | 09 00 |
 | Print | 10 | Prints all lexer blocks. | 10 01 00 |
 | Print in NS Ascii | 11 | Prints all lexer blocks translated by NS Ascii. | 11 01 00 |
 | Input | 12 | Adds user input to current lexer block. | 10 12 |
