@@ -1,14 +1,12 @@
 # --- Calls a pointer where its name is a number ---        
 def pointer_by_number_check(self):
     if self.pointer_by_number not in self.pointers:
-        return 
+        return ""
 
-    self.variables = self.pointers[self.pointer_by_number]
+    if len(self.pointers[self.pointer_by_number]) != 0:
 
-    for variable in self.variables:
-        if variable not in self.variables:
-            self.variables[variable]="00"
+        self.output_value+=self.variables[self.pointers[self.pointer_by_number][-1]]
 
-        self.output+=self.variables[variable]
+        del self.pointers[self.pointer_by_number][-1]
 
     self.pointer_by_number=""

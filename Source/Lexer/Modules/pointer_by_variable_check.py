@@ -2,13 +2,11 @@
 def pointer_by_variable_check(self):
     if self.variables[self.pointer_by_variable] not in self.pointers:
         return ""
+    
+    if len(self.pointers[self.variables[self.pointer_by_variable]]) != 0:
 
-    self.variables = self.pointers[self.variables[self.pointer_by_variable]]
+        self.output_value+=self.variables[self.pointers[self.variables[self.pointer_by_variable]][-1]]
 
-    for variable in self.variables:
-        if variable not in self.variables:
-            self.variables[variable]="00"
-
-        self.output+=self.variables[variable]
+        del self.pointers[self.variables[self.pointer_by_variable]][-1]
 
     self.pointer_by_variable=""
