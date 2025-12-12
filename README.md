@@ -277,21 +277,52 @@ This folder is used for saving or loading variables using a .json files.
 
 ## Code Examples
 
+### Example of using the print function
+
+NumScript code
+
+```
+10 01 00
+10 01 05
+10 01 10
+```
+
+Console output
+
+```
+00
+05
+10
+```
+
+### Example of defining variables and then printing their values
+
+NumScript code
+
+```
+13 01 00 24 01 10
+13 01 01 24 01 20
+
+10 02 00
+10 02 01
+```
+
+Console output
+
+```
+10
+20
+```
+
 ### Example of defining a variable and for cycle.
 
-NumScript code split by new lines
+NumScript code
 
 ```
 13 01 01 24 01 10
 54 01 01
 50 10 02 01
 50 51
-```
-
-NumScript code split by 25 operator
-
-```
-13 01 01 24 01 10 25 54 01 01 25 50 10 02 01 25 50 51
 ```
 
 Console output
