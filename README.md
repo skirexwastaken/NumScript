@@ -277,7 +277,7 @@ This folder is used for saving or loading variables using a .json files.
 
 ## Code Examples
 
-### Example of using the print function
+### Example of using the print function.
 
 NumScript code
 
@@ -295,7 +295,7 @@ Console output
 10
 ```
 
-### Example of defining variables and then printing their values
+### Example of defining variables and then printing their values.
 
 NumScript code
 
