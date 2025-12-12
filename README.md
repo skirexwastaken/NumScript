@@ -55,51 +55,51 @@ The internal execution process is composed of several steps:
 ### 1. Tokenization
 The code is first processed by a **tokenizer**, which checks that its content is numeric and splits it into **token pairs** — for example: "10", "01", "00"
 
-    ### 2. Execution Setup
-    After the instruction 00 (RUN) is passed, the code is compiled into a simplified internal format and sent to the executor.
-    The executor reads each line in order and passes it to the code runner.
+### 2. Execution Setup
+After the instruction 00 (RUN) is passed, the code is compiled into a simplified internal format and sent to the executor.
+The executor reads each line in order and passes it to the code runner.
     
-    ### 3. Parsing
-    The code runner sends the current line to the parser.
-    The parser analyzes the tokens to determine which function should be executed — this is defined by the first token pair.
-    That first pair is then removed, and the remaining tokens are passed to the lexer for further analysis.
+### 3. Parsing
+The code runner sends the current line to the parser.
+The parser analyzes the tokens to determine which function should be executed — this is defined by the first token pair.
+That first pair is then removed, and the remaining tokens are passed to the lexer for further analysis.
     
-    ### 4. Lexing
-    The lexer processes the remaining tokens and groups them into Lexer Blocks, which represent final, usable values.
-    In NumScript, these blocks are separated by the token 24.
+### 4. Lexing
+The lexer processes the remaining tokens and groups them into Lexer Blocks, which represent final, usable values.
+In NumScript, these blocks are separated by the token 24.
     
-    Example — Variable Definition: 13 01 00 24 01 01 01 00
+Example — Variable Definition: 13 01 00 24 01 01 01 00
     
-    This expression contains two blocks:
+This expression contains two blocks:
     
-    The first block defines the variable name, with the value 00.
-    The second block defines the value of that variable, with the value 01 10.
+The first block defines the variable name, with the value 00.
+The second block defines the value of that variable, with the value 01 10.
     
-    These blocks are then passed back to the parser and they are used as parameters in the executed function.
+These blocks are then passed back to the parser and they are used as parameters in the executed function.
     
-    ### 5. Execution Result
-    The parser assigns the blocks as parameters for the target function, and the result is printed to the console.
+### 5. Execution Result
+The parser assigns the blocks as parameters for the target function, and the result is printed to the console.
     
-    ### Summary
-    Tokenizer -> Splits code into numeric token pairs.
+### Summary
+Tokenizer -> Splits code into numeric token pairs.
     
-    Executor -> Reads and sends each line for execution.
+Executor -> Reads and sends each line for execution.
     
-    Parser -> Determines which function each token pair represents and sets its arguments.
+Parser -> Determines which function each token pair represents and sets its arguments.
     
-    Lexer -> Groups tokens into logical blocks and evaluates their values.
+Lexer -> Groups tokens into logical blocks and evaluates their values.
     
-    Console Output -> Displays the final result after execution.
+Console Output -> Displays the final result after execution.
     
-    ## Runtime Architecture
+## Runtime Architecture
     
-    ```
-    cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
+```
+cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
                       |                                           |
                       <-------------------------------------------<  
-    ```
+```
                       
-    ## Token MAP
+## Token MAP
 
 | Name | Token | Description                                                          | Example |
 |------|--------|----------------------------------------------------------------------|----------|
