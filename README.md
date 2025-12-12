@@ -48,6 +48,10 @@ Running NumScript file:
 
 `python3 NumScript.py main.ns`
 
+# AUR Package
+
+`yay -s numscript`
+
 ## Core Mechanics
 
 NumScript is an **interpreted language**, meaning the interpreter reads and executes code **one line at a time**.
