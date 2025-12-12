@@ -4,6 +4,8 @@ NumScript is a **lightweight, esoteric, interpreted scripting language** designe
 
 The language started as a joke back in **mid-2024**, and over time it grew into its current form featuring a **rich syntax** and a **unique numerical logic system**.
 
+The code is not perfect as this is my first project I started right around when I started learning programming, however I try to improve it from time to time.
+
 👉 You can try the language at [**numscript.xyz**](https://numscript.xyz)
 
 ## Key Features
@@ -50,6 +52,23 @@ Running NumScript file:
 
 NumScript is an **interpreted language**, meaning the interpreter reads and executes code **one line at a time**.
 
+It works with two stacks of code:
+
+### 1. Tokenized Code
+This stack contains a code from either shell or file. 
+
+It is the code that is primarily executed.
+
+### 2. Higher Tokenized Code
+This stack contains a code with higher execution priority. 
+
+This code can originate from called definitions for example.
+
+After each executed line from Tokenized Code the NumScript Virtual Machine checks this stack if it contains any new code and if it does it is executed.
+
+After all code from Higher Tokenized Code is executed the NumScript Virtual Machine continues with execution of the primary code in Tokenized Code.
+
+## Execution process
 The internal execution process is composed of several steps:
 
 ### 1. Tokenization
@@ -90,6 +109,11 @@ Parser -> Determines which function each token pair represents and sets its argu
 Lexer -> Groups tokens into logical blocks and evaluates their values.
     
 Console Output -> Displays the final result after execution.
+
+## Builder Variables
+The builder is a function that combines all of the parts of NumScript Virtual Machines.
+
+It has multiple variables that are used in the entire code.
     
 ## Runtime Architecture
     
@@ -228,6 +252,28 @@ cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
 | 85 | \\ | 86 | ] | 87 | ^ | 88 | _ | 89 | ` |
 | 90 | { | 91 | &#124; | 92 | } | 93 | ~ | 94 | € |
 | 95 | £ | 96 | ¥ | 97 | ¢ | 98 | § | 99 | ' ' |
+
+### Data Folders
+These folders are automatically created in the path of your choice after NumScript.py is ran for the first time.
+
+There are 5 different subfolders inside the data folder.
+
+The NumScript functions that save and load different types of files use these folders.
+
+#### 1. Code
+This folder is used for loading .ns files.
+
+#### 2. Definitions
+This folder is used for saving or loading definitions using a .json files.
+
+#### 3. Files
+This folder is used for saving or loading .txt files.
+
+### 4. Stacks
+This folder is used for saving or loading stacks using a .json files.
+
+#### 5. Variables
+This folder is used for saving or loading variables using a .json files.
 
 ## Code Examples
 
