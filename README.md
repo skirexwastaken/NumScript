@@ -95,8 +95,8 @@ Console Output -> Displays the final result after execution.
     
 ```
 cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
-                      |                                           |
-                      <-------------------------------------------<  
+                   |                                           |
+                   <-------------------------------------------<  
 ```
                       
 ## Token MAP
