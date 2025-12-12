@@ -48,7 +48,7 @@ Running NumScript file:
 
 `python3 NumScript.py main.ns`
 
-# AUR Package
+### AUR Package
 
 `yay -s numscript`
 
