@@ -1,0 +1,27 @@
+{
+    "cli.asciiArt": "asciiArt",
+    "cli.cli":"cli",
+            
+    "tokenizer.tokenizer":"tokenizer",
+    "tokenizer.tokenize":"tokenize",
+      
+    "lexer.modules.stackByNumberCheck":"stackByNumberCheck",
+    "lexer.modules.stackByVariableCheck":"stackByVariableCheck",
+    "lexer.modules.variableByNumberCheck":"variableByNumberCheck",
+    "lexer.modules.variableByVariableCheck":"variableByVariableCheck",
+    "lexer.modules.indexByNumberCheck":"indexByNumberCheck",
+    "lexer.modules.indexByVariableCheck":"indexByVariableCheck",
+    "lexer.lexerUtility":"lexerUtility",
+    "lexer.lexer":"lexer",
+
+    "parser.parser":"parser",
+
+    "exe.lineRunner":"lineRunner",
+    "exe.run":"run",
+    "exe.compiler":"compiler",
+             
+    "support.mostCommon":"mostCommon",
+    "support.rounder":"rounder",
+    "support.tokenCorrector":"tokenCorrector",
+    "support.onlyNumbers": "onlyNumbers"
+}
