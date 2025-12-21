@@ -108,10 +108,7 @@ def lexer(self,tokens):
                 case"12":
                     self.lexerUtility(None)
 
-                    inputedCode = self.tokenizer(input(self.input_symbol).replace(" ",""))
-
-                    if isinstance(inputedCode, list):
-                        self.lexerOutputPart+= "".join(inputedCode)
+                    self.lexerOutputPart += "".join(self.tokenizer(input(self.input_symbol).replace(" ","")))
 
                 # --- Comment ---        
                 case"22":
