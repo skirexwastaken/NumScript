@@ -299,7 +299,7 @@ Console output
 10
 ```
 
-### Example of defining variables and then printing their values.
+### Example of defining variables and then printing their values
 
 NumScript code
 
@@ -318,7 +318,7 @@ Console output
 20
 ```
 
-### Example of defining a variable and for cycle.
+### Example of defining a variable and for cycle
 
 NumScript code
 
