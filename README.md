@@ -282,6 +282,8 @@ This folder is used for saving or loading variables using a .json files.
 
 ## Code Examples
 
+Note: $ stands before user input in Console output parts.
+
 ### Example of using the print function.
 
 NumScript code
@@ -399,16 +401,16 @@ Example of Console output
 
 ```
 Guess the number
-50
+$ 50
 Higher
-75
+$ 75
 Lower
-62
+$ 62
 Higher
-67
+$ 67
 Lower
-65
+$ 65
 Lower
-63
+$ 63
 You won
 ```
