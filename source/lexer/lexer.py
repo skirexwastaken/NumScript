@@ -1,7 +1,10 @@
 # --- Importing Libraries ---
+import sys
 import random
 import re
 from datetime import datetime
+
+sys.set_int_max_str_digits(100000)
 
 # --- Analyses code, used in most NS functions ---    
 def lexer(self,tokens):
@@ -71,7 +74,7 @@ def lexer(self,tokens):
                 case"05":
                     self.lexerUtility("cleanIndexByVariable")
 
-                    self.indexByVariable+=tokens[index + 1]
+                    self.indexByVariable +=tokens[index + 1]
                     skip=True
 
                 # --- Rest is num ---    
@@ -79,7 +82,7 @@ def lexer(self,tokens):
                     self.lexerUtility(None)
 
                     tokens=tokens[index+1:]
-                    self.lexerOutputPart+= "".join(tokens[:-1])
+                    self.lexerOutputPart += "".join(tokens[:-1])
                     break
 
                 # --- Rest is var ---
@@ -87,21 +90,21 @@ def lexer(self,tokens):
                     self.lexerUtility(None)
 
                     tokens=tokens[index+1:]
-                    self.variableByNumber+= "".join(tokens[:-1])
+                    self.variableByNumber += "".join(tokens[:-1])
                     break
 
                 # --- Call stack with num value ---
                 case"08":
                     self.lexerUtility("cleanstackByNumber")
 
-                    self.stackByNumber+=tokens[index + 1]
+                    self.stackByNumber += tokens[index + 1]
                     skip=True
 
                 # --- Call stack with var value ---
                 case"09":
                     self.lexerUtility("cleenstackByVariable")
 
-                    self.stackByVariable+=tokens[index + 1]
+                    self.stackByVariable += tokens[index + 1]
                     skip=True
 
                 # --- Input ---    
@@ -123,67 +126,67 @@ def lexer(self,tokens):
                     self.lexerUtility(None)
 
                     self.lexerOutput.append(self.lexerOutputPart)
-                    self.lexerOutputPart= ""
+                    self.lexerOutputPart = ""
 
                 # --- Adds day/month/year ---
                 case"26":
                     self.lexerUtility(None)
 
                     now=datetime.now()
-                    self.lexerOutputPart+= self.rounder(str(now.day)) + self.rounder(str(now.month)) + self.rounder(str(now.year))
+                    self.lexerOutputPart += self.rounder(str(now.day)) + self.rounder(str(now.month)) + self.rounder(str(now.year))
 
                 # --- Adds hour/minute ---   
                 case"27":
                     self.lexerUtility(None)
 
                     now=datetime.now()
-                    self.lexerOutputPart+= self.rounder(str(now.hour)) + self.rounder(str(now.minute))
+                    self.lexerOutputPart += self.rounder(str(now.hour)) + self.rounder(str(now.minute))
 
                 # --- Checking for math logic ---
                 case"30"|"31"|"32"|"33"|"34"|"35"|"36"|"37"|"38"|"39":    
                     self.lexerUtility(None)
 
-                    self.lexerOutputPart+={"30": "++", "31": "--", "32": "**", "33": "//", "34": ">>", "35": "<<", "36": "==", "37": "&&", "38": "||", "39": "~~"}[tokens[index]]
+                    self.lexerOutputPart += {"30": "++", "31": "--", "32": "**", "33": "//", "34": ">>", "35": "<<", "36": "==", "37": "&&", "38": "||", "39": "~~"}[tokens[index]]
             
                 # --- Min ---
                 case"70":
                     self.lexerUtility(None)
                 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                     numbers = self.tokenize(self.lexerOutputPart)
 
-                    self.lexerOutputPart=str(min(self.onlyNumbers(numbers)))
+                    self.lexerOutputPart = str(min(self.onlyNumbers(numbers)))
 
                 # --- Max ---    
                 case"71":
                     self.lexerUtility(None)
 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                     numbers = self.tokenize(self.lexerOutputPart)
 
-                    self.lexerOutputPart=str(max(self.onlyNumbers(numbers)))
+                    self.lexerOutputPart = str(max(self.onlyNumbers(numbers)))
 
                 # --- Average ---    
                 case"72":
                     self.lexerUtility(None)
 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                     numbers = self.tokenize(self.lexerOutputPart)
                     total = sum(map(int, self.onlyNumbers(numbers)))
-                    self.lexerOutputPart=self.rounder(str(total // len(numbers)))
+                    self.lexerOutputPart = self.rounder(str(total // len(numbers)))
 
                 # --- Sum ---   
                 case"73":
                     self.lexerUtility(None)
 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
                         
                     numbers = self.onlyNumbers(self.tokenize(self.lexerOutputPart))
 
@@ -198,43 +201,43 @@ def lexer(self,tokens):
                 case"74":
                     self.lexerUtility(None)
 
-                    self.lexerOutputPart=self.rounder(str(len(self.lexerOutputPart) // 2))
+                    self.lexerOutputPart = self.rounder(str(len(self.lexerOutputPart) // 2))
 
                 # --- Sort ---    
                 case"75":
                     self.lexerUtility(None)
 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                     numbers = self.tokenize(self.lexerOutputPart)
                     numbers.sort()
-                    self.lexerOutputPart= "".join(numbers)
+                    self.lexerOutputPart = "".join(numbers)
 
                 # --- Any ---    
                 case"76":
                     self.lexerUtility(None)
 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                     numbers = self.tokenize(self.lexerOutputPart)
-                    self.lexerOutputPart=random.choice(self.onlyNumbers(numbers))
+                    self.lexerOutputPart = random.choice(self.onlyNumbers(numbers))
 
                 # --- All Same ---
                 case"77":
                     self.lexerUtility(None)
 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                     numbers = self.tokenize(self.lexerOutputPart)
                     
                     if all(x == numbers[0] for x in numbers): 
-                        self.lexerOutputPart= "01"
+                        self.lexerOutputPart = "01"
                         
                     else:
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                 # --- Random ---    
                 case"78":
@@ -253,7 +256,7 @@ def lexer(self,tokens):
                     self.lexerUtility(None)
 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                     self.lexerOutputPart = self.mostCommon(self.tokenize(self.lexerOutputPart))
 
@@ -262,22 +265,22 @@ def lexer(self,tokens):
                     self.lexerUtility(None)
 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                     numbers = self.tokenize(self.lexerOutputPart)
                     random.shuffle(numbers)
-                    self.lexerOutputPart= "".join(numbers)
+                    self.lexerOutputPart = "".join(numbers)
 
                 # --- Reverse ---    
                 case"81":
                     self.lexerUtility(None)
 
                     if self.lexerOutputPart == "":
-                        self.lexerOutputPart= "00"
+                        self.lexerOutputPart = "00"
 
                     numbers = self.tokenize(self.lexerOutputPart)
                     numbers.reverse()
-                    self.lexerOutputPart= "".join(numbers)
+                    self.lexerOutputPart = "".join(numbers)
             
                 case _:
                     if self.higherTokenizedCode == []:
@@ -288,25 +291,26 @@ def lexer(self,tokens):
                         del self.higherTokenizedCode[self.higherLindex][index + 1 + self.depth - deleted]
                         deleted += 1
 
-        else: skip=False
+        else: skip = False
 
         index += 1
     
     self.lexerUtility(None)
-    index=0
+    index = 0
 
-    if self.lexerOutputPart!= "":self.lexerOutput.append(self.lexerOutputPart)#If output value is not "", it will be added to output
+    if self.lexerOutputPart != "":
+        self.lexerOutput.append(self.lexerOutputPart)#If output value is not "", it will be added to output
 
     for self.lexerOutputPart in self.lexerOutput:#Checks for math in each part
 
         if any(symbol in self.lexerOutputPart for symbol in self.math):#Checking for math
-            self.lexerOutputPart=self.lexerOutputPart.replace("++", "+").replace("--", "-").replace("**", "*").replace(">>", ">").replace("<<", "<").replace("&&", "&").replace("||", "|").replace("~~", "~")#The math logic returns to its normal state
+            self.lexerOutputPart = self.lexerOutputPart.replace("++", "+").replace("--", "-").replace("**", "*").replace(">>", ">").replace("<<", "<").replace("&&", "&").replace("||", "|").replace("~~", "~")#The math logic returns to its normal state
         
             try:#Tries to run math
                 self.lexerOutputPart = eval(re.sub(r'\b0+(\d+)', r'\1', self.lexerOutputPart))#If math is found, it will try eval with removing excess 0
 
                 if self.lexerOutputPart < 0:
-                    self.lexerOutputPart*=-1#ABS is applied as anything less than 0 doesn't exist :)
+                    self.lexerOutputPart *= -1 #ABS is applied as anything less than 0 doesn't exist :)
 
                 if self.lexerOutputPart == True:
                     self.lexerOutputPart = "01"
@@ -315,7 +319,7 @@ def lexer(self,tokens):
                     self.lexerOutputPart = "00"
 
             except:
-                self.lexerOutputPart=None#If there's an error it will return empty string
+                self.lexerOutputPart = None #If there's an error it will return empty string
 
         if self.lexerOutputPart:
             self.lexerOutput[index] = self.rounder(str(self.lexerOutputPart))
@@ -325,7 +329,7 @@ def lexer(self,tokens):
     
         index += 1
         
-    if self.lexerOutput==[]:
-        self.lexerOutput=["00"]
+    if self.lexerOutput == []:
+        self.lexerOutput = ["00"]
         
     return(self.lexerOutput) #Returns print value
