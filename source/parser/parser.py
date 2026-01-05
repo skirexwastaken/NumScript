@@ -43,6 +43,18 @@ def parser(self, tokens):
         if self.depth > self.maxDepth:
             return("-502400")
         
+        # --- If there are no tokens left -> Empty line after going thru TABS ---
+        if tokens == []:
+            if self.higherTokenizedCode == []:
+                del self.tokenizedCode[self.lindex]
+                self.lindex -= self.indexChange
+
+            else:
+                del self.higherTokenizedCode[self.higherLindex]
+                self.higherLindex -= self.indexChange
+
+            return("-502400")
+        
     else:
         self.depth, self.maxDepth = 0,0
     
@@ -63,15 +75,15 @@ def parser(self, tokens):
             return ("-9900")
         
         # --- Print ---
-        case"10":
+        case "10":
             return("".join(self.lexer(tokens)))
         
         # --- Print in NumScript Ascii ---
-        case"11":
+        case "11":
             return("".join([self.nsascii[letter] for letter in self.tokenize("".join(self.lexer(tokens)))]))
         
         # --- Define variable ---
-        case"13":
+        case "13":
             builder = self.lexer(tokens)
 
             while len(builder)<2:
@@ -86,7 +98,7 @@ def parser(self, tokens):
             return(f"-991324{variableName}24{variableValue}")
         
         # --- Define stack ---
-        case"14":
+        case "14":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -104,7 +116,7 @@ def parser(self, tokens):
             return("-991424"+"".join(builder))
         
         # --- Remove variable from stack by name ---
-        case"15":
+        case "15":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -123,7 +135,7 @@ def parser(self, tokens):
             return(f"-991524{stackName}")
         
         # --- Remove variable from stack by index ---
-        case"16":
+        case "16":
             builder = self.lexer(tokens)
 
             while len(builder)<2:
@@ -148,7 +160,7 @@ def parser(self, tokens):
             return(f"-991624{stackName}")
         
         # --- Append to stack ---
-        case"17":
+        case "17":
             builder = self.lexer(tokens)
 
             while len(builder)<2:
@@ -168,7 +180,7 @@ def parser(self, tokens):
             return(f"-991724{name}")
         
         # --- Merge stacks ---
-        case"18":
+        case "18":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -195,7 +207,7 @@ def parser(self, tokens):
             return(f"-991824{self.stacks[firststack]}")
         
         # --- Delete stack ---
-        case"19":
+        case "19":
             stackName = "".join(self.lexer(tokens))
 
             if stackName in self.stacks:
@@ -204,14 +216,14 @@ def parser(self, tokens):
             return(f"-991924{stackName}")
         
         # --- Exit ---
-        case"20":
+        case "20":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
             exit()
             
         # --- Restart ---    
-        case"21":
+        case "21":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -233,14 +245,14 @@ def parser(self, tokens):
             return("-9921")
         
         # --- Pass/Comment ---
-        case"22":
+        case "22":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
             return("-22")
         
         # --- Changes exe to read code from top to bottom ---
-        case"28":
+        case "28":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -249,7 +261,7 @@ def parser(self, tokens):
             return("-9928")
         
         # --- Changes exe to read code from bottom to top ---
-        case"29":
+        case "29":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -258,7 +270,7 @@ def parser(self, tokens):
             return("-9929")
         
         # --- Jump ---
-        case"40":
+        case "40":
             if self.loopCallback == True:
                 if self.maxDepth > 0:
                     self.maxDepth-=1
@@ -276,7 +288,7 @@ def parser(self, tokens):
             return(f"-994024{jumpValue}")
         
         # --- Wait ---
-        case"41":
+        case "41":
             waitValue = "".join(self.lexer(tokens))
 
             if int(waitValue) == 0:
@@ -287,7 +299,7 @@ def parser(self, tokens):
             return(f"-994124{waitValue}") #Returns wait value
         
         # --- Clean console ---
-        case"42":
+        case "42":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -297,7 +309,7 @@ def parser(self, tokens):
             return("-9942")
         
         # --- Clean states ---
-        case"43":
+        case "43":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -306,7 +318,7 @@ def parser(self, tokens):
             return("-9943")
         
         # --- Clean tokenized code ---
-        case"44":
+        case "44":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -316,7 +328,7 @@ def parser(self, tokens):
             return("-9944")
         
         # --- Clean higher tokenized code ---
-        case"45":
+        case "45":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -326,7 +338,7 @@ def parser(self, tokens):
             return("-9945")
         
         # --- Clean variables ---
-        case"46":
+        case "46":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -335,7 +347,7 @@ def parser(self, tokens):
             return("-9946")
         
         # --- Clean definitions ---
-        case"47":
+        case "47":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -344,7 +356,7 @@ def parser(self, tokens):
             return("-9947")
         
         # --- Clean stacks ---
-        case"48":
+        case "48":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
@@ -353,7 +365,7 @@ def parser(self, tokens):
             return("-9948")
         
         # --- Switching states ---
-        case"49":
+        case "49":
             tokens = tokens[1:]
 
             if len(tokens) > 4:
@@ -382,7 +394,7 @@ def parser(self, tokens):
             return("-49"+"".join(tokens))
         
         # --- Break ---
-        case"51":
+        case "51":
             if len(tokens) != 1:
                 self.tokenCorrector()
                 
@@ -395,7 +407,7 @@ def parser(self, tokens):
             return("-9951")
         
         # --- If ---
-        case"52":
+        case "52":
             for lexerBlock in self.lexer(tokens):
                 if lexerBlock == "00": return("-995200")
 
@@ -405,7 +417,7 @@ def parser(self, tokens):
             return("-995201")
         
         # --- While loop ---
-        case"53":
+        case "53":
             for lexerBlock in self.lexer(tokens):
                 if lexerBlock == "00":
                     return("-995300")
@@ -461,7 +473,7 @@ def parser(self, tokens):
             return("-995301")
         
         # --- For loop ---
-        case"54":
+        case "54":
             variableName = "".join(self.lexer(tokens))
 
             if variableName not in self.variables:
@@ -540,7 +552,7 @@ def parser(self, tokens):
             return("-995401")
         
         # --- Do if ---
-        case"55":
+        case "55":
             if self.higherTokenizedCode != []:
                 self.higherTokenizedCode[self.higherLindex][0 + self.depth] = "52"
 
@@ -550,7 +562,7 @@ def parser(self, tokens):
             return("-9955")
         
         # --- Define ---
-        case"56":
+        case "56":
             self.currentDefinition = "".join(self.lexer(tokens))
             
             self.definitions[self.currentDefinition] = []
@@ -558,7 +570,7 @@ def parser(self, tokens):
             return(f"-995624{self.currentDefinition}")
         
         # --- Call definition ---
-        case"58":
+        case "58":
             definitionName = "".join(self.lexer(tokens))
             
             if definitionName not in self.definitions:
@@ -576,7 +588,7 @@ def parser(self, tokens):
                 return(f"-995824{definitionName}")
             
         # --- Lambda ---    
-        case"59":
+        case "59":
             builder = self.lexer(tokens)
             
             while len(builder)<2:
@@ -592,7 +604,7 @@ def parser(self, tokens):
             return(f"-99{definitionName}24{definitionCode}")
         
         # --- Load TXT ---
-        case"60": 
+        case "60": 
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -623,7 +635,7 @@ def parser(self, tokens):
             else: return("-996000")
         
         # --- Save TXT ---
-        case"61":
+        case "61":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -641,7 +653,7 @@ def parser(self, tokens):
             return("-9961")
         
         # --- Save TXT in NumScript Ascii ---
-        case"62":
+        case "62":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -664,7 +676,7 @@ def parser(self, tokens):
             return("-9962")
         
         # --- Import variables ---
-        case"63":
+        case "63":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -691,7 +703,7 @@ def parser(self, tokens):
             return(f"-9963{output}")
         
         # --- Export variables ---
-        case"64":
+        case "64":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -718,7 +730,7 @@ def parser(self, tokens):
             return(f"-9964{consoleOutput}")
         
         # --- Import stacks ---
-        case"65":
+        case "65":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -744,7 +756,7 @@ def parser(self, tokens):
             return(f"-9965{consoleOutput}")
         
         # --- Export stacks ---
-        case"66":
+        case "66":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -768,7 +780,7 @@ def parser(self, tokens):
             return(f"-996624{consoleOutput}")
         
         # --- Import Definition --- 
-        case"67":
+        case "67":
             builder = self.lexer(tokens)
             
             while len(builder) < 2:
@@ -795,7 +807,7 @@ def parser(self, tokens):
             return(f"-996724{consoleOutput}")
         
         # --- Export Definition ---
-        case"68":
+        case "68":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -819,7 +831,7 @@ def parser(self, tokens):
             return(f"-996824{output}")
         
         # --- Load NS code from other file into higher tokenized code ---
-        case"69":
+        case "69":
             filename = "".join(self.lexer(tokens))
 
             if os.path.exists(f"{self.codePath}data/code/{filename}.ns"):
@@ -840,7 +852,7 @@ def parser(self, tokens):
             return(f"-996924{filename}")
         
         # --- Poke variables name by index ---
-        case"82":
+        case "82":
             variableIndex = int("".join(self.lexer(tokens)))
 
             variableNames = list(self.variables.keys())
@@ -852,7 +864,7 @@ def parser(self, tokens):
                 return ("-832400")
             
         # --- Poke variable value by index ---
-        case"83":
+        case "83":
             variableIndex = int("".join(self.lexer(tokens)))
 
             variableValues = list(self.variables.values())
@@ -864,7 +876,7 @@ def parser(self, tokens):
                 return("-832400")
 
         # --- Insert to tokenized code ---    
-        case"84":
+        case "84":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -884,7 +896,7 @@ def parser(self, tokens):
             return("-9984")
         
         # --- Insert to higher tokenized code ---
-        case"85":
+        case "85":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -904,7 +916,7 @@ def parser(self, tokens):
             return ("-9985")
         
         # --- Remove variable from variables ---
-        case"86":
+        case "86":
             variableNames = self.lexer(tokens)
 
             for variableName in variableNames:
@@ -915,7 +927,7 @@ def parser(self, tokens):
             return("-9986")
         
         # --- Remove definition from variables ---
-        case"87":
+        case "87":
             definitionNames = self.lexer(tokens)
 
             for definitionName in definitionNames:
@@ -926,7 +938,7 @@ def parser(self, tokens):
             return("-9987")
         
         # --- Swap variable name with value ---
-        case"88":
+        case "88":
             variableName = self.lexer(tokens)
 
             if variableName == []:
@@ -944,7 +956,7 @@ def parser(self, tokens):
             return(f"-9988{variableValue}24{variableName}")
         
         # --- Rename variable ---
-        case"89":
+        case "89":
             builder = self.lexer(tokens)
 
             oldVariableName = builder[0]
@@ -962,7 +974,7 @@ def parser(self, tokens):
             return(f"-9989{newVariableName}24{value}")
         
         # --- Contains ---
-        case"90":
+        case "90":
             builder = self.lexer(tokens)
 
             while len(builder) < 3:
@@ -985,7 +997,7 @@ def parser(self, tokens):
                 return("902400")
             
         # --- Add token by index ---    
-        case"91":
+        case "91":
             builder = self.lexer(tokens)
 
             while len(builder) < 3:
@@ -1011,7 +1023,7 @@ def parser(self, tokens):
             return(f"-9991{variableName}24{variableValue}")
         
         # --- Remove token by index ---
-        case"92":
+        case "92":
             builder = self.lexer(tokens)
 
             while len(builder)<2:
@@ -1041,7 +1053,7 @@ def parser(self, tokens):
             return(f"-9992{variableName}24{variableValue}")
         
         # --- Replace ---
-        case"93":
+        case "93":
             builder = self.lexer(tokens)
 
             while len(builder) < 4:
@@ -1060,7 +1072,7 @@ def parser(self, tokens):
             return(f"-999324{builder}")
         
         # --- Replace by index ---
-        case"94":
+        case "94":
             builder = self.lexer(tokens)
 
             while len(builder) < 3:
@@ -1084,7 +1096,7 @@ def parser(self, tokens):
             return(f"-999424{self.variables[variableName]}")
         
         # --- Random randint ---
-        case"95":
+        case "95":
             builder = self.lexer(tokens)
 
             while len(builder) < 3:
@@ -1102,7 +1114,7 @@ def parser(self, tokens):
             return(f"-999524{self.variables[variableName]}")
         
         # --- Sub string (extracts part of string by start and end) ---
-        case"96":
+        case "96":
             builder = self.lexer(tokens)
 
             while len(builder) < 3:
@@ -1130,7 +1142,7 @@ def parser(self, tokens):
             return(f"-999624{variableValue}")
         
         # --- &= -> if variable value is same as inputed value, the variable is set to 01, else 00 ---
-        case"97":
+        case "97":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -1152,7 +1164,7 @@ def parser(self, tokens):
             return(f"-999724{self.variables[variableName]}")
         
         # --- |= -> if variable value is not same as inputed value, the variable is set to 00, else 01 ---
-        case"98":
+        case "98":
             builder = self.lexer(tokens)
 
             while len(builder) < 2:
@@ -1173,7 +1185,7 @@ def parser(self, tokens):
             return(f"-999824{self.variables[variableName]}")
         
         # --- Project guide ---  
-        case"99":
+        case "99":
             if len(tokens) != 1:
                 self.tokenCorrector()
 
