@@ -84,12 +84,12 @@ After the instruction 00 (RUN) is passed, the code is compiled into a simplified
 The executor reads each line in order and passes it to the code runner.
     
 ### 3. Parsing
-The code runner sends the current line to the parser.
-The parser analyzes the tokens to determine which function should be executed — this is defined by the first token pair.
-That first pair is then removed, and the remaining tokens are passed to the lexer for further analysis.
+The code runner sends the current line to the interpreter.
+The interpreter analyzes the tokens to determine which function should be executed — this is defined by the first token pair.
+That first pair is then removed, and the remaining tokens are passed to the interpreteoperandAssembler for further analysis.
     
 ### 4. Lexing
-The lexer processes the remaining tokens and groups them into Lexer Blocks, which represent final, usable values.
+The interpreteoperandAssembler processes the remaining tokens and groups them into interpreteoperandAssembler Blocks, which represent final, usable values.
 In NumScript, these blocks are separated by the token 24.
     
 Example — Variable Definition: 13 01 00 24 01 01 01 00
@@ -99,19 +99,19 @@ This expression contains two blocks:
 The first block defines the variable name, with the value 00.
 The second block defines the value of that variable, with the value 01 10.
     
-These blocks are then passed back to the parser and they are used as parameters in the executed function.
+These blocks are then passed back to the interpreter and they are used as parameters in the executed function.
     
 ### 5. Execution Result
-The parser assigns the blocks as parameters for the target function, and the result is printed to the console.
+The interpreter assigns the blocks as parameters for the target function, and the result is printed to the console.
     
 ### Summary
 Tokenizer -> Splits code into numeric token pairs.
     
 Executor -> Reads and sends each line for execution.
     
-Parser -> Determines which function each token pair represents and sets its arguments.
+interpreter -> Determines which function each token pair represents and sets its arguments.
     
-Lexer -> Groups tokens into logical blocks and evaluates their values.
+interpreteoperandAssembler -> Groups tokens into logical blocks and evaluates their values.
     
 Console Output -> Displays the final result after execution.
 
@@ -123,9 +123,9 @@ It has multiple variables that are used in the entire code.
 ## Runtime Architecture
     
 ```
-cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
-                   |                                           |
-                   <-------------------------------------------<  
+cli -> run -> lineRunner -> interpreter -> interpreter -> operandAssembler -> interpreter -> lineRunner -> cli
+                   |                                              |
+                   <----------------------------------------------<  
 ```
                       
 ## Token MAP
@@ -136,15 +136,15 @@ cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
 | Number | 01 | Stack towards a number.                                              | 01 00 |
 | Variable (num) | 02 | Stack towards variable by name.                                      | 02 00|
 | Variable (var) | 03 | Points to variable by value of variable.                             | 03 00|
-| Index (num) | 04 | Replaces lexer block by numeric index.                               | 01 00 01 01 04 00 |
-| Index (var) | 05 | Replaces lexer block by variable value index.                        | 01 00 01 01 05 00 |
+| Index (num) | 04 | Replaces interpreteoperandAssembler block by numeric index.                               | 01 00 01 01 04 00 |
+| Index (var) | 05 | Replaces interpreteoperandAssembler block by variable value index.                        | 01 00 01 01 05 00 |
 | Rest is num | 06 | Considers rest of line to be a number.                               | 06 00 01 |
 | Rest is var | 07 | Considers rest of line to be a variable.                             | 07 00 01 |
 | Stack (num) | 08 | Calls all variables from a stack where its name is a number.         | 08 00 |
 | Stack (var) | 09 | Calls all variables from a stack where its name is a variable value. | 09 00 |
-| Print | 10 | Prints all lexer blocks.                                             | 10 01 00 |
-| Print in NS Ascii | 11 | Prints all lexer blocks translated by NS Ascii.                      | 11 01 00 |
-| Input | 12 | Adds user input to current lexer block.                              | 10 12 |
+| Print | 10 | Prints all interpreteoperandAssembler blocks.                                             | 10 01 00 |
+| Print in NS Ascii | 11 | Prints all interpreteoperandAssembler blocks translated by NS Ascii.                      | 11 01 00 |
+| Input | 12 | Adds user input to current interpreteoperandAssembler block.                              | 10 12 |
 | Let | 13 | Defines a variable (name + combined value).                          | 13 01 00 24 01 10 |
 | Define Stack | 14 | Defines a stack with specified variables.                            | 14 01 00 24 01 05 24 01 07 |
 | Remove variable from Stack by name | 15 | Removes specific variables from stack.                               | 15 01 00 24 01 05 |
@@ -155,8 +155,8 @@ cli -> run -> line_runner -> parser -> lexer -> parser -> line_runner -> cli
 | Exit | 20 | Ends execution of script.                                            | 20 |
 | Restart | 21 | Restarts the console.                                                | 21 |
 | Comment | 22 | Marks code as comment (not executed).                                | 22 10 01 00 |
-| Split between variables | 23 | Splits between variables in lexer block.                             | 10 02 00 23 02 01 |
-| Split in lexer parts | 24 | Split between lexer blocks.                                          | 13 01 00 24 01 00 |
+| Split between variables | 23 | Splits between variables in interpreteoperandAssembler block.                             | 10 02 00 23 02 01 |
+| Split in interpreteoperandAssembler parts | 24 | Split between interpreteoperandAssembler blocks.                                          | 13 01 00 24 01 00 |
 | Then | 25 | Allows multiple lines on one line.                                   | 10 01 00 25 10 01 01 |
 | Date | 26 | Inserts current date as number.                                      | 10 26 |
 | Time | 27 | Inserts current time as number.                                      | 10 27 |
