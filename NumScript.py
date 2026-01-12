@@ -10,5 +10,5 @@ engine = NumScriptVirtualMachine()
 try:
     engine.cli()
 
-except KeyboardInterrupt:
-    pass
+except:
+    exit()
