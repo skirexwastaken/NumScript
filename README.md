@@ -263,7 +263,7 @@ cli -> run -> lineRunner -> interpreter -> interpreter -> operandAssembler -> in
 | Code | Function | Description |
 |------|----------|-------------|
 | -99 | Invalid Function | Returned when a token does not match any case; the line is deleted. |
-| -99002401 | Run (00) | Returned after a code execution jump is initialized. |
+| -99002401 | Run (00) | Returned after a code execution is initialized. |
 | -991324[value]24[value] | Define Var (13) | Confirms a variable was set with a specific name and value. |
 | -991424[value] | Define Stack (14) | Confirms a new stack was initialized with provided variables. |
 | -991524[value] | Stack Pop Name (15) | Returned after removing a variable from a stack by name. |
