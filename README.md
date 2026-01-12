@@ -258,6 +258,64 @@ cli -> run -> lineRunner -> interpreter -> interpreter -> operandAssembler -> in
 | 90 | { | 91 | &#124; | 92 | } | 93 | ~ | 94 | € |
 | 95 | £ | 96 | ¥ | 97 | ¢ | 98 | § | 99 | ' ' |
 
+## NumScript Interpreter Debug Codes
+
+| Code | Function | Description |
+| :--- | :--- | :--- |
+| `-99` | **Invalid Function** | Returned when a token does not match any case; the line is deleted. |
+| `-99002401` | **Run (`00`)** | Returned after a code execution jump is initialized. |
+| `-991324{name}24{val}` | **Define Var (`13`)** | Confirms a variable was set with a specific name and value. |
+| `-991424{builder}` | **Define Stack (`14`)** | Confirms a new stack was initialized with provided variables. |
+| `-991524{stack}` | **Stack Pop Name (`15`)** | Returned after removing a variable from a stack by name. |
+| `-991624{stack}` | **Stack Pop Index (`16`)** | Returned after removing a variable from a stack by index. |
+| `-991724{name}` | **Stack Append (`17`)** | Confirms data was successfully appended to the specified stack. |
+| `-991824{stack}` | **Merge Stacks (`18`)** | Confirms two stacks were merged into one. |
+| `-991924{stackName}` | **Delete Stack (`19`)** | Confirms a specific stack was deleted from memory. |
+| `-9921` | **Restart (`21`)** | Issued when all memory, variables, and states are reset. |
+| `-9928` | **Top-Down (`28`)** | Confirms execution direction is set to top-to-bottom. |
+| `-9929` | **Bottom-Up (`29`)** | Confirms execution direction is set to bottom-to-top. |
+| `-994024{val}` | **Jump (`40`)** | Indicates a jump to a specific line index in the script. |
+| `-994124{val}` | **Wait (`41`)** | Confirms the interpreter paused for the specified duration. |
+| `-9942` | **Clear Console (`42`)** | Issued after clearing the terminal screen. |
+| `-9943` | **Clear States (`43`)** | Confirms all internal flags (debug, print, etc.) were reset. |
+| `-9944` | **Clear Code (`44`)** | Confirms the primary tokenized code was wiped. |
+| `-9945` | **Clear High Code (`45`)** | Confirms the higher tokenized code buffer was wiped. |
+| `-9946` | **Clear Variables (`46`)** | Confirms all user-defined variables were deleted. |
+| `-9947` | **Clear Definitions (`47`)** | Confirms all custom function definitions were deleted. |
+| `-9948` | **Clear Stacks (`48`)** | Confirms all stacks were deleted. |
+| `-9951` | **Break (`51`)** | Issued when exiting a loop or conditional block. |
+| `-995200` / `01` | **If (`52`)** | Evaluates a condition: `01` for true, `00` for false. |
+| `-995301` | **While (`53`)** | Confirms the initialization of a while-loop. |
+| `-995400` / `01` | **For (`54`)** | Returns success (`01`) or variable failure (`00`) for for-loops. |
+| `-9955` | **Do If (`55`)** | Confirms a conditional execution block was processed. |
+| `-995624{name}` | **Define (`56`)** | Confirms the creation of a new function definition. |
+| `-995824{name}` | **Call Def (`58`)** | Returns the definition name called (or `00` if missing). |
+| `-99{name}24{code}` | **Lambda (`59`)** | Confirms a single-line lambda definition was created. |
+| `-9960{file}` / `00` | **Load TXT (`60`)** | Confirms file loading or returns `00` if not found. |
+| `-9961` | **Save TXT (`61`)** | Confirms data was saved to a .txt file. |
+| `-9962` | **Save NS Ascii (`62`)** | Confirms data was saved using NumScript Ascii encoding. |
+| `-9963{output}` | **Import Vars (`63`)** | Returns the list of variables imported from JSON. |
+| `-9964{output}` | **Export Vars (`64`)** | Returns the list of variables exported to JSON. |
+| `-9965{output}` | **Import Stacks (`65`)** | Returns the list of stacks imported from JSON. |
+| `-996624{output}` | **Export Stacks (`66`)** | Returns the list of stacks exported to JSON. |
+| `-996724{output}` | **Import Defs (`67`)** | Returns the list of definitions imported from JSON. |
+| `-996824{output}` | **Export Defs (`68`)** | Returns the list of definitions exported to JSON. |
+| `-996924{filename}` | **Load NS (`69`)** | Confirms external code was loaded into the higher buffer. |
+| `-9984` | **Insert Code (`84`)** | Confirms tokens were inserted into the primary code list. |
+| `-9985` | **Insert High (`85`)** | Confirms tokens were inserted into higher code list. |
+| `-9986` | **Remove Var (`86`)** | Confirms the deletion of specific variables. |
+| `-9987` | **Remove Def (`87`)** | Confirms the deletion of specific function definitions. |
+| `-9988{val}24{name}` | **Swap Var (`88`)** | Confirms a variable name and value have been swapped. |
+| `-9989{name}24{val}` | **Rename Var (`89`)** | Returns the new name and value of a renamed variable. |
+| `-9991{name}24{val}` | **Add Token (`91`)** | Confirms a token was inserted into a string by index. |
+| `-9992{name}24{val}` | **Rem Token (`92`)** | Confirms a token was removed from a string by index. |
+| `-999324{val}` | **Replace (`93`)** | Returns the string after a search-and-replace. |
+| `-999424{val}` | **Replace Index (`94`)** | Returns the string after replacing a specific index. |
+| `-999524{val}` | **Random (`95`)** | Returns the generated random integer. |
+| `-999624{val}` | **Sub String (`96`)** | Returns the extracted segment of a string. |
+| `-999724{val}` | **Equals (`97`)** | Returns `01` if equal, `00` if not. |
+| `-999824{val}` | **Not Equals (`98`)** | Returns `01` if not equal, `00` if equal. |
+
 ### Data Folders
 These folders are automatically created in the path of your choice after NumScript.py is ran for the first time.
 
