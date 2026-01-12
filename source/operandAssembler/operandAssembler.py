@@ -4,7 +4,8 @@ import random
 import re
 from datetime import datetime
 
-sys.set_int_max_str_digits(100000)
+# --- This could be best described as: It works. ---
+sys.set_int_max_str_digits(1_000_000_000)
 
 # --- Analyses code, used in most NS functions ---    
 def operandAssembler(self,tokens):
