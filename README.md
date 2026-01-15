@@ -344,6 +344,8 @@ Container is a way to run NumScript code embeded in regular Python files.
 
 It uses the nsOut variable which saves the last print.
 
+NumScript Virtual Machine is restarted after each container instance finishes.
+
 ### Example usage
 
 ```
