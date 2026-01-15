@@ -3,10 +3,10 @@
 # --- Importing NumScript Virtual Machine from source ---
 from source.builder import NumScriptVirtualMachine
 
-# --- Launching the NumScript shell ---                
+# --- Launching the NSVM shell ---
 engine = NumScriptVirtualMachine()
 
-# --- Removing KeyboardInterrupt error message ---
+# --- Launching the NumScript shell ---
 try:
     engine.cli()
 

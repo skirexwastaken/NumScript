@@ -134,14 +134,14 @@ def operandAssembler(self,tokens):
                     self.operandAssemblerUtility(None)
 
                     now=datetime.now()
-                    self.operandAssemblerOutputPart += self.rounder(str(now.day)) + self.rounder(str(now.month)) + self.rounder(str(now.year))
+                    self.operandAssemblerOutputPart += self.rounder(now.day) + self.rounder(now.month) + self.rounder(now.year)
 
                 # --- Adds hour/minute ---   
                 case"27":
                     self.operandAssemblerUtility(None)
 
                     now=datetime.now()
-                    self.operandAssemblerOutputPart += self.rounder(str(now.hour)) + self.rounder(str(now.minute))
+                    self.operandAssemblerOutputPart += self.rounder(now.hour) + self.rounder(now.minute)
 
                 # --- Checking for math logic ---
                 case"30"|"31"|"32"|"33"|"34"|"35"|"36"|"37"|"38"|"39":    
@@ -180,7 +180,7 @@ def operandAssembler(self,tokens):
 
                     numbers = self.tokenize(self.operandAssemblerOutputPart)
                     total = sum(map(int, self.onlyNumbers(numbers)))
-                    self.operandAssemblerOutputPart = self.rounder(str(total // len(numbers)))
+                    self.operandAssemblerOutputPart = self.rounder(total // len(numbers))
 
                 # --- Sum ---   
                 case"73":
@@ -196,13 +196,13 @@ def operandAssembler(self,tokens):
                     for number in numbers:
                         total += int(number)
 
-                    self.operandAssemblerOutputPart = self.rounder(str(total))
+                    self.operandAssemblerOutputPart = self.rounder(total)
 
                 # --- Len ---    
                 case"74":
                     self.operandAssemblerUtility(None)
 
-                    self.operandAssemblerOutputPart = self.rounder(str(len(self.operandAssemblerOutputPart) // 2))
+                    self.operandAssemblerOutputPart = self.rounder(len(self.operandAssemblerOutputPart) // 2)
 
                 # --- Sort ---    
                 case"75":
@@ -250,7 +250,7 @@ def operandAssembler(self,tokens):
                     numbers = self.onlyNumbers(self.tokenize(self.operandAssemblerOutputPart))
 
 
-                    self.operandAssemblerOutputPart = self.rounder(str(random.randint(int(min(numbers)), int(max(numbers)))))
+                    self.operandAssemblerOutputPart = self.rounder(random.randint(int(min(numbers)), int(max(numbers))))
 
                 # --- Most Common ---
                 case"79":
@@ -323,7 +323,7 @@ def operandAssembler(self,tokens):
                 self.operandAssemblerOutputPart = None #If there's an error it will return empty string
 
         if self.operandAssemblerOutputPart:
-            self.operandAssemblerOutput[index] = self.rounder(str(self.operandAssemblerOutputPart))
+            self.operandAssemblerOutput[index] = self.rounder(self.operandAssemblerOutputPart)
 
         else:
             del self.operandAssemblerOutput[index]

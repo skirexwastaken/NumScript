@@ -30,7 +30,7 @@ def cli(self):
 
     # --- Console Interface ---        
     while True:
-        line = input(self.shellInSymbol).replace(" ", "")
+        line = input(self.shellInSymbol)
 
         if line != "":
             tokenizedLine = self.tokenizer(line)

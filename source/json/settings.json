@@ -20,5 +20,7 @@
       "variablesPath": ""
     },
 
+    "shellOutput": true,
+
     "init": true
 }

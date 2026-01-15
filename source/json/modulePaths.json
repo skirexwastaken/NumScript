@@ -19,9 +19,11 @@
     "exe.lineRunner":"lineRunner",
     "exe.run":"run",
     "exe.compiler":"compiler",
+    "exe.container":"container",
              
     "support.mostCommon":"mostCommon",
     "support.rounder":"rounder",
     "support.tokenCorrector":"tokenCorrector",
-    "support.onlyNumbers": "onlyNumbers"
+    "support.onlyNumbers": "onlyNumbers",
+    "support.handleOutput": "handleOutput"
 }

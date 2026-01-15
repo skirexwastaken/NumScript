@@ -78,6 +78,8 @@ class NumScriptVirtualMachine():
 
         self.loopCallback = False #Helper variable for loops
 
+        self.nsOut = "" #List that contains print output
+
         # --- Importing modules ---
         with open(rootDirectory / "json" / "modulePaths.json", "r", encoding="utf-8") as modulePathsFile:
             modulesToImport = json.load(modulePathsFile)
@@ -93,9 +95,18 @@ class NumScriptVirtualMachine():
             
             self.states = settings["states"]
 
+            # --- Determines if print output should be printed to shell or saved into self.nsOut ---
+            self.shellOutput = settings["shellOutput"]
+
             # --- CLI GUI settings ---
             self.shellInSymbol = settings["symbols"]["shellIn"]
-            self.shellOutSymbol = settings["symbols"]["shellOut"]
+
+            if self.shellOutput:
+                self.shellOutSymbol = settings["symbols"]["shellOut"]
+
+            else:
+                self.shellOutSymbol = ""
+
             self.input_symbol = settings["symbols"]["input"]
 
             # --- File I/O path variables ---

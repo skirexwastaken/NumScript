@@ -1,30 +1,35 @@
 # --- Tokenizes code from input ---
 def tokenizer(self,line):
-    # --- Checks if there are only numbers in line ---
-    if line.isdigit(): 
+    if isinstance(line,str):
+        line = line.replace(" ","")
 
-        # --- Checks if line is in correct pair number format ---
-        if len(line) % 2 != 0:
-            line = f"0{line}"
+        # --- Checks if there are only numbers in line ---
+        if line.isdigit(): 
 
-        return(self.tokenize(line))
+            # --- Checks if line is in correct pair number format ---
+            if len(line) % 2 != 0:
+                line = self.rounder(line)
 
-    # --- If line is empty ---
-    elif line == "":
-        return(self.tokenize("00"))
+            return(self.tokenize(line))
 
-    # --- If the line is not fully numerical ---
+        # --- If line is empty ---
+        elif line == "":
+            return(self.tokenize("00"))
+
+        # --- If the line is not fully numerical ---
+        else:
+            numericalLine = ""
+            
+            for symbol in line:
+                if symbol.isdigit():
+                    numericalLine += symbol
+                    
+                elif symbol in self.reversedNSAscii:
+                    numericalLine += self.reversedNSAscii[symbol]
+                    
+                else:
+                    numericalLine += "00"
+
+            return(self.tokenize(numericalLine))
     else:
-        numericalLine = ""
-        
-        for symbol in line:
-            if symbol.isdigit():
-                numericalLine += symbol
-                
-            elif symbol in self.reversedNSAscii:
-                numericalLine += self.reversedNSAscii[symbol]
-                
-            else:
-                numericalLine += "00"
-
-        return(self.tokenize(numericalLine))
+        return(self.tokenize("00"))

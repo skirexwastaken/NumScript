@@ -434,7 +434,7 @@ def interpreter(self, tokens):
                     higherTokenizedLine = higherTokenizedLine[self.depth+1:]
 
                     if higherTokenizedLine[0] == "51":
-                        jumpPart = ["40","01", self.rounder(str(self.higherLindex))]
+                        jumpPart = ["40","01", self.rounder(self.higherLindex)]
 
                         for token in range(self.depth+1):
                             jumpPart.insert(0,"50")
@@ -455,7 +455,7 @@ def interpreter(self, tokens):
 
                     tokenizedLine = tokenizedLine[self.depth+1:]
                     if tokenizedLine[0] == "51":
-                        jumpPart = ["40","01",self.rounder(str(self.lindex))]
+                        jumpPart = ["40","01",self.rounder(self.lindex)]
 
                         for token in range(self.depth+1):
                             jumpPart.insert(0,"50")
@@ -495,7 +495,7 @@ def interpreter(self, tokens):
                     tokenizedLine = tokenizedLine[self.depth+1:]
 
                     if tokenizedLine[0] == "51":
-                        jumpPart=["40","01", self.rounder(str(self.higherLindex))]
+                        jumpPart=["40","01", self.rounder(self.higherLindex)]
                         var_define_part=["13","01",self.rounder(variableName),"24","02",self.rounder(variableName),"31","01","01"]
 
                         for token in range(self.depth+1):
@@ -508,7 +508,7 @@ def interpreter(self, tokens):
                         break
 
                     tempHigherLindex += 1
-                ifPart = ["52","01","00","35","02",self.rounder(str(variableName))]
+                ifPart = ["52","01","00","35","02",self.rounder(variableName)]
 
                 for depth in range(self.depth):
                     ifPart.insert(0,"50")
@@ -526,7 +526,7 @@ def interpreter(self, tokens):
 
 
                     if higherTokenizedLine[0]=="51":
-                        jumpPart=["40","01",self.rounder(str(self.lindex))]
+                        jumpPart=["40","01",self.rounder(self.lindex)]
                         var_define_part=["13","01",self.rounder(variableName),"24","02",self.rounder(variableName),"31","01","01"]
 
                         for token in range(self.depth+1):
@@ -1109,7 +1109,7 @@ def interpreter(self, tokens):
             if variableName not in self.variables:
                 self.variables[variableName] = "00"
 
-            self.variables[variableName] = self.rounder(str(random.randint(int(minValue),int(maxValue))))
+            self.variables[variableName] = self.rounder(random.randint(int(minValue),int(maxValue)))
 
             return(f"-999524{self.variables[variableName]}")
         
