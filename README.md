@@ -338,6 +338,32 @@ This folder is used for saving or loading stacks using a .json files.
 #### 5. Variables
 This folder is used for saving or loading variables using a .json files.
 
+## NumScript Container
+
+Container is a way to run NumScript code embeded in regular Python files.
+
+It uses the nsOut variable which saves the last print.
+
+### Example usage
+
+```
+from source.builder import NumScriptVirtualMachine
+
+NSVM = NumScriptVirtualMachine()
+
+result = NSVM.container("10 01 00")
+
+print(result)
+
+NSVM.container([
+    "13 01 00 24 01 10",
+    "13 01 01 24 01 05",
+    "10 02 00 30 02 01"
+])
+
+print(NSVM.nsOut)
+```
+
 ## Code Examples
 
 Note: $ stands before user input in Console output parts.
