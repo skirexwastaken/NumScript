@@ -18,8 +18,12 @@ def container(self,code):
         for line in code:
             self.tokenizedCode.append(self.tokenizer(line))
 
+    # --- NSVM is restarted after the code execution ---
+    self.tokenizedCode.append("21")
+    
     # --- Executing the code ---
     self.run()
 
     # --- Returning output ---
+
     return self.nsOut
