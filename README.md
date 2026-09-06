@@ -6,7 +6,7 @@ The language started as a joke back in **mid-2024**, and over time it grew into 
 
 The code is not perfect as this is my first project I started right around when I started learning programming, however I try to improve it from time to time.
 
-👉 You can try the language at [**numscript.xyz**](https://numscript.xyz)
+👉 You can try the language at [**numscript.danbtw.org**](https://numscript.danbtw.org)
 
 ## Key Features
 
