@@ -40,6 +40,12 @@ Running NumScript shell:
 
 `python3 NumScript.py`
 
+### AUR Package
+
+`yay -s numscript`
+
+`numscript`
+
 Running NumScript file:
 
 ### Windows 
@@ -53,6 +59,8 @@ Running NumScript file:
 ### AUR Package
 
 `yay -s numscript`
+
+`numscript main.ns`
 
 ## Core Mechanics
 
