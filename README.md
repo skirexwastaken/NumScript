@@ -30,7 +30,7 @@ NumScript doesn't use any non standard Python libraries so you will need to simp
 
 ## How to use
 
-Running NumScript shell:
+### Running NumScript shell:
 
 ### Windows
 
@@ -46,7 +46,7 @@ Running NumScript shell:
 
 `numscript`
 
-Running NumScript file:
+### Running NumScript file:
 
 ### Windows 
 
