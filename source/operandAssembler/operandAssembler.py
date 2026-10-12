@@ -26,7 +26,7 @@ from datetime import datetime
 sys.set_int_max_str_digits(1_000_000_000)
 
 # --- Analyses code, used in most NS functions ---    
-def operandAssembler(self,tokens):
+def operandAssembler(self, tokens):
 
     # --- Declaring variables used in operandAssembler ---
     skip = False
@@ -210,7 +210,6 @@ def operandAssembler(self,tokens):
                     numbers = self.onlyNumbers(self.tokenize(self.operandAssemblerOutputPart))
 
                     total = 0
-
                     for number in numbers:
                         total += int(number)
 
@@ -310,7 +309,8 @@ def operandAssembler(self,tokens):
                         del self.higherTokenizedCode[self.higherLindex][index + 1 + self.depth - deleted]
                         deleted += 1
 
-        else: skip = False
+        else: 
+            skip = False
 
         index += 1
     
@@ -318,18 +318,18 @@ def operandAssembler(self,tokens):
     index = 0
 
     if self.operandAssemblerOutputPart != "":
-        self.operandAssemblerOutput.append(self.operandAssemblerOutputPart)#If output value is not "", it will be added to output
+        self.operandAssemblerOutput.append(self.operandAssemblerOutputPart) # If output value is not "", it will be added to output
 
-    for self.operandAssemblerOutputPart in self.operandAssemblerOutput:#Checks for math in each part
+    for self.operandAssemblerOutputPart in self.operandAssemblerOutput: # Checks for math in each part
 
-        if any(symbol in self.operandAssemblerOutputPart for symbol in self.math):#Checking for math
+        if any(symbol in self.operandAssemblerOutputPart for symbol in self.math): # Checking for math
             self.operandAssemblerOutputPart = self.operandAssemblerOutputPart.replace("++", "+").replace("--", "-").replace("**", "*").replace(">>", ">").replace("<<", "<").replace("&&", "&").replace("||", "|").replace("~~", "~")#The math logic returns to its normal state
         
             try:#Tries to run math
-                self.operandAssemblerOutputPart = eval(re.sub(r'\b0+(\d+)', r'\1', self.operandAssemblerOutputPart))#If math is found, it will try eval with removing excess 0
+                self.operandAssemblerOutputPart = eval(re.sub(r'\b0+(\d+)', r'\1', self.operandAssemblerOutputPart)) # If math is found, it will try eval with removing excess 0
 
                 if self.operandAssemblerOutputPart < 0:
-                    self.operandAssemblerOutputPart *= -1 #ABS is applied as anything less than 0 doesn't exist :)
+                    self.operandAssemblerOutputPart *= -1 # ABS is applied as anything less than 0 doesn't exist :)
 
                 if self.operandAssemblerOutputPart == True:
                     self.operandAssemblerOutputPart = "01"
@@ -338,7 +338,7 @@ def operandAssembler(self,tokens):
                     self.operandAssemblerOutputPart = "00"
 
             except:
-                self.operandAssemblerOutputPart = None #If there's an error it will return empty string
+                self.operandAssemblerOutputPart = None # If there's an error it will return empty string
 
         if self.operandAssemblerOutputPart:
             self.operandAssemblerOutput[index] = self.rounder(self.operandAssemblerOutputPart)
@@ -351,4 +351,4 @@ def operandAssembler(self,tokens):
     if self.operandAssemblerOutput == []:
         self.operandAssemblerOutput = ["00"]
         
-    return(self.operandAssemblerOutput) #Returns print value
+    return(self.operandAssemblerOutput) # Returns print value
