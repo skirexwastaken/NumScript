@@ -18,7 +18,7 @@
 
 # --- Clean num index constructor, used in operandAssembler ---
 def indexByNumberCheck(self):
-    self.indexByNumber=int(self.indexByNumber)
+    self.indexByNumber = int(self.indexByNumber)
     numbers = self.tokenize(self.operandAssemblerOutputPart)
 
     if 0 <= self.indexByNumber < len(numbers):
