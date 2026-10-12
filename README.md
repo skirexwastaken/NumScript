@@ -666,3 +666,9 @@ Example of Console output
 ```
 [      Co oo oooo  o   o o oo        o     o oo     ooo o        oo  o     o  o o         oo oo   o ]
 ```
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details
+
+Copyright (c) 2026 Daniel Hora
