@@ -337,10 +337,10 @@ def operandAssembler(self, tokens):
                 if self.operandAssemblerOutputPart < 0:
                     self.operandAssemblerOutputPart *= -1 # ABS is applied as anything less than 0 doesn't exist :)
 
-                if self.operandAssemblerOutputPart == True:
+                elif self.operandAssemblerOutputPart == True:
                     self.operandAssemblerOutputPart = "01"
 
-                if self.operandAssemblerOutputPart == False:
+                elif self.operandAssemblerOutputPart == False:
                     self.operandAssemblerOutputPart = "00"
 
             except:
