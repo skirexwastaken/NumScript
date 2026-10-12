@@ -151,10 +151,14 @@ class NumScriptVirtualMachine():
                     self.run()
 
         # --- Checking if data folders exist ---
-        for folder in [f"{self.codePath}/code",
-                       f"{self.definitionsPath}/definitions", 
-                       f"{self.filesPath}/files", 
-                       f"{self.stacksPath}/stacks", 
-                       f"{self.variablesPath}/variables"]:
+        dataFolders = [
+            f"{self.codePath}/code",
+            f"{self.definitionsPath}/definitions", 
+            f"{self.filesPath}/files", 
+            f"{self.stacksPath}/stacks", 
+            f"{self.variablesPath}/variables"
+        ]
+        
+        for folder in dataFolders:
             if not os.path.exists(f"data/{folder}"):
                 os.makedirs(f"data/{folder}")
