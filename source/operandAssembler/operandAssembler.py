@@ -102,6 +102,7 @@ def operandAssembler(self, tokens):
 
                     tokens=tokens[index+1:]
                     self.operandAssemblerOutputPart += "".join(tokens[:-1])
+
                     break
 
                 # --- Rest is var ---
@@ -110,6 +111,7 @@ def operandAssembler(self, tokens):
 
                     tokens=tokens[index+1:]
                     self.variableByNumber += "".join(tokens[:-1])
+
                     break
 
                 # --- Call stack with num value ---
@@ -158,7 +160,7 @@ def operandAssembler(self, tokens):
                 case"27":
                     self.operandAssemblerUtility(None)
 
-                    now=datetime.now()
+                    now = datetime.now()
                     self.operandAssemblerOutputPart += self.rounder(now.hour) + self.rounder(now.minute)
 
                 # --- Checking for math logic ---
@@ -198,6 +200,7 @@ def operandAssembler(self, tokens):
 
                     numbers = self.tokenize(self.operandAssemblerOutputPart)
                     total = sum(map(int, self.onlyNumbers(numbers)))
+
                     self.operandAssemblerOutputPart = self.rounder(total // len(numbers))
 
                 # --- Sum ---   
@@ -230,6 +233,7 @@ def operandAssembler(self, tokens):
 
                     numbers = self.tokenize(self.operandAssemblerOutputPart)
                     numbers.sort()
+
                     self.operandAssemblerOutputPart = "".join(numbers)
 
                 # --- Any ---    
@@ -240,6 +244,7 @@ def operandAssembler(self, tokens):
                         self.operandAssemblerOutputPart = "00"
 
                     numbers = self.tokenize(self.operandAssemblerOutputPart)
+
                     self.operandAssemblerOutputPart = random.choice(self.onlyNumbers(numbers))
 
                 # --- All Same ---
@@ -266,7 +271,6 @@ def operandAssembler(self, tokens):
 
                     numbers = self.onlyNumbers(self.tokenize(self.operandAssemblerOutputPart))
 
-
                     self.operandAssemblerOutputPart = self.rounder(random.randint(int(min(numbers)), int(max(numbers))))
 
                 # --- Most Common ---
@@ -287,6 +291,7 @@ def operandAssembler(self, tokens):
 
                     numbers = self.tokenize(self.operandAssemblerOutputPart)
                     random.shuffle(numbers)
+
                     self.operandAssemblerOutputPart = "".join(numbers)
 
                 # --- Reverse ---    
@@ -298,6 +303,7 @@ def operandAssembler(self, tokens):
 
                     numbers = self.tokenize(self.operandAssemblerOutputPart)
                     numbers.reverse()
+
                     self.operandAssemblerOutputPart = "".join(numbers)
             
                 case _:
@@ -325,7 +331,7 @@ def operandAssembler(self, tokens):
         if any(symbol in self.operandAssemblerOutputPart for symbol in self.math): # Checking for math
             self.operandAssemblerOutputPart = self.operandAssemblerOutputPart.replace("++", "+").replace("--", "-").replace("**", "*").replace(">>", ">").replace("<<", "<").replace("&&", "&").replace("||", "|").replace("~~", "~")#The math logic returns to its normal state
         
-            try:#Tries to run math
+            try: # Tries to run math
                 self.operandAssemblerOutputPart = eval(re.sub(r'\b0+(\d+)', r'\1', self.operandAssemblerOutputPart)) # If math is found, it will try eval with removing excess 0
 
                 if self.operandAssemblerOutputPart < 0:
@@ -351,4 +357,4 @@ def operandAssembler(self, tokens):
     if self.operandAssemblerOutput == []:
         self.operandAssemblerOutput = ["00"]
         
-    return(self.operandAssemblerOutput) # Returns print value
+    return(self.operandAssemblerOutput) # Returns the token blocks
