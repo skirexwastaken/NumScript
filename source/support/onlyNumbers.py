@@ -23,6 +23,7 @@ def onlyNumbers(self,numbers):
     for number in numbers:
         if number not in self.math:
             filteredNumbers.append(number)
+            
     if filteredNumbers == []:
         return ["00"]
 
