@@ -80,7 +80,7 @@ class NumScriptVirtualMachine():
             "£": "95", "¥": "96", "¢": "97", "§": "98", " ": "99"
         }
 
-        self.indexChange = 1 #Defines if code is red from top to bottom or from bottom to top
+        self.indexChange = 1 #Defines if code is read from top to bottom or from bottom to top
 
         self.lindex = 0 #Tokenized code index, specifies which line of code is currently interpreted
         self.higherLindex = 0 #Higher tokenized code index, specifies which line of code is currently interpreted
