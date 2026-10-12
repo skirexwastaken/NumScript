@@ -80,26 +80,26 @@ class NumScriptVirtualMachine():
             "£": "95", "¥": "96", "¢": "97", "§": "98", " ": "99"
         }
 
-        self.indexChange = 1 #Defines if code is read from top to bottom or from bottom to top
+        self.indexChange = 1 # Defines if code is read from top to bottom or from bottom to top
 
-        self.lindex = 0 #Tokenized code index, specifies which line of code is currently interpreted
-        self.higherLindex = 0 #Higher tokenized code index, specifies which line of code is currently interpreted
+        self.lindex = 0 # Tokenized code index, specifies which line of code is currently interpreted
+        self.higherLindex = 0 # Higher tokenized code index, specifies which line of code is currently interpreted
 
-        self.tokenizedCode = [] #Tokenized code
-        self.higherTokenizedCode = [] #Tokenized code with higher priority
+        self.tokenizedCode = [] # Tokenized code
+        self.higherTokenizedCode = [] # Tokenized code with higher priority
 
-        self.depth = 0 #Depth when it comes to conditional statements/loops
-        self.maxDepth = 0 #Max depth when it comes to conditional statements/loops
+        self.depth = 0 # Depth when it comes to conditional statements/loops
+        self.maxDepth = 0 # Max depth when it comes to conditional statements/loops
 
-        self.variables = {} #Variable variables
-        self.stacks = {} #Pointer variables
-        self.definitions = {} #definitions variables
+        self.variables = {} # Variable memory
+        self.stacks = {} # Stack memory
+        self.definitions = {} # Definition memory
 
-        self.currentDefinition = "" #Current definiton that is being defined
+        self.currentDefinition = "" # Current definiton that is being defined
 
-        self.loopCallback = False #Helper variable for loops
+        self.loopCallback = False # Helper variable for loops
 
-        self.nsOut = "" #List that contains print output
+        self.nsOut = "" # List that contains print output
 
         # --- Importing modules ---
         with open(rootDirectory / "json" / "modulePaths.json", "r", encoding="utf-8") as modulePathsFile:
