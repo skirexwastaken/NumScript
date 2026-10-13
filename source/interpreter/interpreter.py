@@ -328,7 +328,7 @@ def interpreter(self, tokens):
             if len(tokens) != 1:
                 self.tokenCorrector()
 
-            self.states = {"debug":False,"splitter":False,"print_tokens":False,"print_memory":False}
+            self.states = {"debug" : False, "splitter" : False, "print_tokens" : False, "print_memory" : False}
 
             return("-9943")
         
