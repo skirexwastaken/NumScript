@@ -46,7 +46,7 @@ def interpreter(self, tokens):
     
     # --- TAB ---
     if tokens[0] == "50":
-        self.depth,index=0,0
+        self.depth = 0
         
         for token in tokens:
             if token == "50":
@@ -55,8 +55,7 @@ def interpreter(self, tokens):
             else:
                 break
             
-            index += 1
-        tokens = tokens[index:]
+        tokens = tokens[self.depth:]
         
         if self.depth > self.maxDepth:
             return("-502400")
