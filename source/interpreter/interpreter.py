@@ -1138,9 +1138,9 @@ def interpreter(self, tokens):
             while len(builder) < 3:
                 builder.append("00")
 
-            variableName = builder[0]
-            startOfSubString = int(builder[1])
-            endOfSubString = int("".join(builder[2:]))
+            variableName = builder.pop(0)
+            startOfSubString = int(builder.pop(0))
+            endOfSubString = int("".join(builder))
 
             if variableName not in self.variables:
                 self.variables[variableName] = "00"
