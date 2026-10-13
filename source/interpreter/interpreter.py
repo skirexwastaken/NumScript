@@ -311,7 +311,7 @@ def interpreter(self, tokens):
 
             time.sleep(int(waitValue))
 
-            return(f"-994124{waitValue}") #Returns wait value
+            return(f"-994124{waitValue}")
         
         # --- Clean console ---
         case "42":
