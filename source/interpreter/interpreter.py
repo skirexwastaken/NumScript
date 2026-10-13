@@ -163,7 +163,7 @@ def interpreter(self, tokens):
 
             if stackName not in self.stacks:
                 self.stacks[stackName] = []
-                
+
                 return(f"-991624{stackName}")
 
             if index >= len(self.stacks[stackName]):
@@ -183,18 +183,16 @@ def interpreter(self, tokens):
             while len(builder)<2:
                 builder.append("00")
 
-            name = builder[0]
-            builder = builder[1:]
+            name = builder.pop(0)
 
             if name not in self.stacks:
-                self.stacks[name]=[]
+                self.stacks[name] = []
 
             for variable in builder:
-
                 if variable not in self.stacks[name]:
                     self.stacks[name].append(variable)
 
-            return(f"-991724{name}")
+            return(f"-991724{name}24{"24".join(builder)}")
         
         # --- Merge stacks ---
         case "18":
