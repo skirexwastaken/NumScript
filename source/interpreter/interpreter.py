@@ -54,7 +54,7 @@ def interpreter(self, tokens):
                 
             else:
                 break
-            
+
         tokens = tokens[self.depth:]
         
         if self.depth > self.maxDepth:
@@ -575,6 +575,8 @@ def interpreter(self, tokens):
 
             else:
                 self.tokenizedCode[self.lindex][0 + self.depth] = "52"
+
+            self.maxDepth += 1
 
             return("-9955")
         
