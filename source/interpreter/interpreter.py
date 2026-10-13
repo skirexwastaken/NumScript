@@ -424,7 +424,8 @@ def interpreter(self, tokens):
         # --- If ---
         case "52":
             for operandAssemblerBlock in self.operandAssembler(tokens):
-                if operandAssemblerBlock == "00": return("-995200")
+                if operandAssemblerBlock == "00": 
+                    return("-995200")
 
             self.maxDepth += 1
             self.loopCallback = True
