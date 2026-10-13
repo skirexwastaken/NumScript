@@ -139,17 +139,17 @@ def interpreter(self, tokens):
             while len(builder) < 2:
                 builder.append("00")
             
-            stackName = builder[0]
-            variableName = "".join(builder[1:])
+            stackName = builder.pop(0)
+            variableName = "".join(builder)
             
             if stackName not in self.stacks:
-                self.stacks[stackName]=[]
+                self.stacks[stackName] = []
                 return(f"-991524{stackName}")
             
             if variableName in self.stacks[stackName]:
                 del self.stacks[stackName][self.stacks[stackName].index(variableName)]
                 
-            return(f"-991524{stackName}")
+            return(f"-991524{stackName}24{variableName}")
         
         # --- Remove variable from stack by index ---
         case "16":
