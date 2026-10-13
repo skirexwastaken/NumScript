@@ -613,8 +613,8 @@ def interpreter(self, tokens):
             while len(builder)<2:
                 builder.append("00")
             
-            definitionName = builder[0]
-            definitionCode = "".join(builder[1:])
+            definitionName = builder.pop()
+            definitionCode = "".join(builder)
 
             definitionCode = self.tokenize(definitionCode)
             
