@@ -158,23 +158,23 @@ def interpreter(self, tokens):
             while len(builder)<2:
                 builder.append("00")
 
-            stackName = builder[0]
-
-            index = "".join(builder[1:])
+            stackName = builder.pop(0)
+            index = int("".join(builder))
 
             if stackName not in self.stacks:
-                self.stacks[stackName]=[]
+                self.stacks[stackName] = []
+                
                 return(f"-991624{stackName}")
 
-            if int(index) >= len(self.stacks[stackName]):
+            if index >= len(self.stacks[stackName]):
                 index = -1
 
             if self.stacks[stackName] == []:
                 self.stacks[stackName] = ["00"]
 
-            del self.stacks[stackName][int(index)]
+            del self.stacks[stackName][index]
 
-            return(f"-991624{stackName}")
+            return(f"-991624{stackName}24{"".join(builder)}")
         
         # --- Append to stack ---
         case "17":
