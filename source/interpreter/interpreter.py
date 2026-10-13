@@ -245,7 +245,7 @@ def interpreter(self, tokens):
             os.system('cls' if os.name == 'nt' else 'clear')
             self.asciiArt()
 
-            self.states = {"debug":False,"splitter":False,"printTokens":False,"printMemory":False}
+            self.states = { "debug" : False, "splitter" : False, "printTokens" : False, "printMemory" : False}
 
             self.lindex = -1
             self.tokenizedCode = []
