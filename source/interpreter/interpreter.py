@@ -201,8 +201,8 @@ def interpreter(self, tokens):
             while len(builder) < 2:
                 builder.append("00")
 
-            firststack = builder[0]
-            secondstack = "".join(builder[1:])
+            firststack = builder.pop(0)
+            secondstack = "".join(builder)
 
             if firststack == secondstack:
                 return(f"-991824{self.stacks[firststack]}")
@@ -219,7 +219,7 @@ def interpreter(self, tokens):
 
             del self.stacks[secondstack]
 
-            return(f"-991824{self.stacks[firststack]}")
+            return(f"-991824{firststack}")
         
         # --- Delete stack ---
         case "19":
