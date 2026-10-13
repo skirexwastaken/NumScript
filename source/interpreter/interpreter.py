@@ -1120,14 +1120,14 @@ def interpreter(self, tokens):
             while len(builder) < 3:
                 builder.append("00")
 
-            variableName = builder[0]
-            minValue = builder[1]
-            maxValue = "".join(builder[2:])
+            variableName = builder.pop(0)
+            minValue = int(builder.pop(0))
+            maxValue = int("".join(builder))
 
             if variableName not in self.variables:
                 self.variables[variableName] = "00"
 
-            self.variables[variableName] = self.rounder(random.randint(int(minValue),int(maxValue)))
+            self.variables[variableName] = self.rounder(random.randint(minValue,maxValue))
 
             return(f"-999524{self.variables[variableName]}")
         
