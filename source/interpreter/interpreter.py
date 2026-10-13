@@ -106,11 +106,11 @@ def interpreter(self, tokens):
             while len(builder)<2:
                 builder.append("00")
 
-            variableName = builder[0]
-            variableValue = "".join(builder[1:])
+            variableName = builder.pop(0)
+            variableValue = "".join(builder)
 
             # --- Variable is added to variables ---
-            self.variables[variableName] = str(variableValue)
+            self.variables[variableName] = variableValue
 
             return(f"-991324{variableName}24{variableValue}")
         
