@@ -288,14 +288,14 @@ def interpreter(self, tokens):
         case "40":
             if self.loopCallback == True:
                 if self.maxDepth > 0:
-                    self.maxDepth-=1
+                    self.maxDepth -= 1
 
                 self.loopCallback = False
 
             jumpValue = "".join(self.operandAssembler(tokens))
 
             if self.higherTokenizedCode == []:
-                self.lindex = int(jumpValue)-1
+                self.lindex = int(jumpValue) - 1
 
             else: 
                 self.higherLindex = int(jumpValue) - 1
