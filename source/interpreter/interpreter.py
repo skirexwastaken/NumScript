@@ -1105,7 +1105,7 @@ def interpreter(self, tokens):
 
             variableValue = self.tokenize(self.variables[variableName])
             
-            if not(index < len(variableValue)):
+            if index >= len(variableValue):
                 index = -1
 
             variableValue[index] = newToken
