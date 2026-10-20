@@ -609,10 +609,10 @@ def interpreter(self, tokens):
         case "59":
             builder = self.operandAssembler(tokens)
             
-            while len(builder)<2:
+            while len(builder) < 2:
                 builder.append("00")
             
-            definitionName = builder.pop()
+            definitionName = builder.pop(0)
             definitionCode = "".join(builder)
 
             definitionCode = self.tokenize(definitionCode)
