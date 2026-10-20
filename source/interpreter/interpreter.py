@@ -1096,19 +1096,19 @@ def interpreter(self, tokens):
             while len(builder) < 3:
                 builder.append("00")
 
-            variableName = builder[0]
-            index = builder[1]
-            newToken = "".join(builder[2:])
+            variableName = builder.pop(0)
+            index = int(builder.pop(0))
+            newToken = "".join(builder)
 
             if variableName not in self.variables:
                 self.variables[variableName] = "00"
 
             variableValue = self.tokenize(self.variables[variableName])
             
-            if not(0 <= int(index) < len(variableValue)):
+            if not(index < len(variableValue)):
                 index = -1
 
-            variableValue[int(index)] = newToken
+            variableValue[index] = newToken
             self.variables[variableName] = "".join(variableValue)
 
             return(f"-999424{self.variables[variableName]}")
