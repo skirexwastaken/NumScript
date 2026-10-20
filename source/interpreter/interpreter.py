@@ -1077,14 +1077,14 @@ def interpreter(self, tokens):
             while len(builder) < 4:
                 builder.append("00")
 
-            variableName = builder[0]
-            originalToken = builder[1]
-            newToken = builder[2]
+            variableName = builder.pop(0)
+            originalToken = builder.pop(0)
+            newToken = builder.pop(0)
 
             if variableName not in self.variables:
-                self.variables[variableName]="00"
+                self.variables[variableName] = "00"
 
-            builder = "".join(builder[3:]).replace(originalToken,newToken)
+            builder = "".join(builder).replace(originalToken,newToken)
             self.variables[variableName] = builder
 
             return(f"-999324{builder}")
