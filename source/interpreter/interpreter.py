@@ -1047,8 +1047,8 @@ def interpreter(self, tokens):
             while len(builder)<2:
                 builder.append("00")
 
-            variableName = builder[0]
-            index = "".join(builder[1:])
+            variableName = builder.pop(0)
+            index = int("".join(builder))
 
             if variableName not in self.variables:
                 self.variables[variableName] = "00"
@@ -1056,10 +1056,10 @@ def interpreter(self, tokens):
             variableValue = self.variables[variableName]
             numbers = self.tokenize(variableValue)
 
-            if not(0 <= int(index) < len(numbers)):
+            if index >= len(numbers):
                 index = -1
 
-            del numbers[int(index)]
+            del numbers[index]
             variableValue = "".join(numbers)
 
             if variableValue == "":
