@@ -208,10 +208,10 @@ def interpreter(self, tokens):
                 return(f"-991824{self.stacks[firststack]}")
 
             if firststack not in self.stacks:
-                self.stacks[firststack] = ["00"]
+                self.stacks[firststack] = []
 
             if secondstack not in self.stacks:
-                self.stacks[secondstack] = ["00"]
+                self.stacks[secondstack] = []
 
             for variable in self.stacks[secondstack]:
                 if variable not in self.stacks[firststack]:
