@@ -1206,7 +1206,7 @@ def interpreter(self, tokens):
             if len(tokens) != 1:
                 self.tokenCorrector()
 
-            return("https://numscript.danbtw.org/\n> https://github.com/skirexwastaken/NumScript\n> https://git.danbtw.org/skirex/NumScript")
+            return("https://numscript.danbtw.org/\nhttps://github.com/skirexwastaken/NumScript\nhttps://git.danbtw.org/skirex/NumScript")
         
         # --- Invalid function -> Line gets deleted ---
         case _:
