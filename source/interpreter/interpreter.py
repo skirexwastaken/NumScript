@@ -998,20 +998,17 @@ def interpreter(self, tokens):
             while len(builder) < 3:
                 builder.append("00")
 
-            contains = builder[0]
-            variable = builder[1]
+            contains = builder.pop(0)
+            variable = builder.pop(0)
 
-            if variable not in self.variables:
-                self.variables[variable]="00"
-
-            builder = self.tokenize("".join(builder[2:]))
+            builder = self.tokenize("".join(builder))
 
             if contains in builder:
-                self.variables[variable]="01"
+                self.variables[variable] = "01"
                 return("902401")
             
             else:
-                self.variables[variable]="00"
+                self.variables[variable] = "00"
                 return("902400")
             
         # --- Add token by index ---    
