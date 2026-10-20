@@ -1186,9 +1186,6 @@ def interpreter(self, tokens):
             variableName = builder.pop(0)
             value = "".join(builder)
 
-            if variableName not in self.variables:
-                self.variables[variableName] = "00"
-
             if variableName != value:
                 self.variables[variableName] = "01"
 
