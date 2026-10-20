@@ -1021,9 +1021,8 @@ def interpreter(self, tokens):
             while len(builder) < 3:
                 builder.append("00")
 
-            variableName = builder[0]
-            index = builder[1]
-            builder = builder[2:]
+            variableName = builder.pop(0)
+            index = int(builder.pop(0))
             expansion = "".join(builder)
 
             if variableName not in self.variables:
@@ -1032,10 +1031,10 @@ def interpreter(self, tokens):
             variableValue = self.variables[variableName]
             numbers = self.tokenize(variableValue)
 
-            if not(0 <= int(index) < len(numbers)):
+            if index >= len(numbers):
                 index = -1
 
-            numbers.insert(int(index),expansion)
+            numbers.insert(index, expansion)
             self.variables[variableName] = self.rounder("".join(numbers))
 
             return(f"-9991{variableName}24{variableValue}")
