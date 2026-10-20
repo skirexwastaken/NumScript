@@ -938,7 +938,6 @@ def interpreter(self, tokens):
             variableNames = self.operandAssembler(tokens)
 
             for variableName in variableNames:
-
                 if variableName in self.variables:
                     del self.variables[variableName]
 
