@@ -949,7 +949,6 @@ def interpreter(self, tokens):
             definitionNames = self.operandAssembler(tokens)
 
             for definitionName in definitionNames:
-
                 if definitionName in self.definitions:
                     del self.definitions[definitionName]
 
