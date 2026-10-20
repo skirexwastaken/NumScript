@@ -977,8 +977,8 @@ def interpreter(self, tokens):
         case "89":
             builder = self.operandAssembler(tokens)
 
-            oldVariableName = builder[0]
-            newVariableName = "".join(builder[1:])
+            oldVariableName = builder.pop(0)
+            newVariableName = "".join(builder)
 
             if oldVariableName in self.variables:
                 value = self.variables[oldVariableName]
